@@ -1,25 +1,26 @@
 :root {
-  /* Color palette — Warm dark workshop */
-  --bg: #0F0E0C;
-  --surface: #1C1A17;
-  --accent: #E8722A;
-  --accent-hover: #F08040;
-  --text: #F2EDE6;
-  --text-muted: #9A9490;
-  --brass: #B8963E;
-  --rule: #2E2B27;
-  --card-bg: #161412;
-  --card-border: #2E2B27;
-  --card-border-hover: #E8722A;
+  /* Color palette — Grove-aligned dark forest */
+  --bg: #0D1F1C;
+  --surface: #162E2A;
+  --accent: #C28A05;
+  --accent-hover: #D4970A;
+  --accent-subtle: rgba(194, 138, 5, 0.15);
+  --text: #F0EDE6;
+  --text-muted: #8B9E8A;
+  --brass: #C28A05;
+  --rule: #1E3530;
+  --card-bg: #0F1E1B;
+  --card-border: #1E3530;
+  --card-border-hover: #C28A05;
 
-  /* Story section — dark green */
-  --story-bg: #1A4A3A;
-  --story-text: #F2EDE6;
-  --story-callout-bg: rgba(255, 255, 255, 0.08);
-  --story-callout-border: #B8963E;
+  /* Story section — Grove Deep Forest */
+  --story-bg: #1A4A44;
+  --story-text: #F0EDE6;
+  --story-callout-bg: rgba(255, 255, 255, 0.07);
+  --story-callout-border: #C28A05;
 
   /* Stats section */
-  --stats-bg: #0A0908;
+  --stats-bg: #091918;
 
   /* Typography */
   --font-display: 'Syne', system-ui, sans-serif;
