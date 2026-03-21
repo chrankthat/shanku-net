@@ -10,7 +10,7 @@
 }
 
 .nav.scrolled {
-  background: rgba(15, 14, 12, 0.95);
+  background: rgba(13, 31, 28, 0.95);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 1px 0 var(--rule);
@@ -23,12 +23,15 @@
 }
 
 .nav-monogram {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--text);
   text-decoration: none;
-  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo {
+  height: 32px;
+  width: auto;
+  filter: invert(1) sepia(1) saturate(0.3) hue-rotate(90deg) brightness(0.85);
 }
 
 .nav-links {
@@ -41,7 +44,8 @@
 .nav-links a {
   font-size: 0.8125rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text);
+  opacity: 0.7;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   text-decoration: none;
@@ -64,6 +68,7 @@
 
 .nav-links a:hover {
   color: var(--text);
+  opacity: 1;
 }
 
 .nav-links a:hover::after {
@@ -87,7 +92,8 @@
 
 .btn-primary {
   background: var(--accent);
-  color: var(--bg);
+  color: #0D1F1C;
+  font-weight: 700;
 }
 
 .btn-primary:hover {
