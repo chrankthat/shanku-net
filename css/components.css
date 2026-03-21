@@ -171,13 +171,12 @@
 }
 
 .hero-headline {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  font-weight: 300;
+  font-weight: 400;
   color: var(--text-muted);
-  line-height: 1.5;
+  line-height: 1.6;
   margin-bottom: var(--space-24);
-  padding-bottom: 0.1em;
 }
 
 .hero-bio {
