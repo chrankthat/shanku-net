@@ -24,11 +24,8 @@ body {
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.4;
-  letter-spacing: -0.03em;
-  overflow: visible;
-  padding-bottom: 0.15em;
-  -webkit-text-size-adjust: 100%;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
 }
 
 h1 {
