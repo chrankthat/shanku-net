@@ -143,6 +143,26 @@
   display: flex;
   align-items: center;
   padding-top: var(--space-96);
+  position: relative;
+  background: url('../images/hero-texture.webp') center bottom / cover no-repeat;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 31, 28, 0.88) 0%,
+    rgba(13, 31, 28, 0.75) 50%,
+    rgba(13, 31, 28, 0.95) 100%
+  );
+  z-index: 0;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-grid {
@@ -296,8 +316,22 @@
 
 /* ─── Story Section ─── */
 .story {
-  background: var(--story-bg);
+  background: var(--story-bg) url('../images/story-stage.webp') center / cover no-repeat;
   color: var(--story-text);
+  position: relative;
+}
+
+.story::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 74, 68, 0.88);
+  z-index: 0;
+}
+
+.story .container {
+  position: relative;
+  z-index: 1;
 }
 
 .story-grid {
@@ -343,6 +377,74 @@
   .story-grid {
     grid-template-columns: 35% 1fr;
     gap: var(--space-64);
+  }
+}
+
+/* ─── Work Section Background ─── */
+#work {
+  position: relative;
+  background: url('../images/work-texture.webp') center / cover no-repeat;
+}
+
+#work::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 31, 28, 0.92);
+  z-index: 0;
+}
+
+#work .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Values Section ─── */
+.values {
+  background: var(--values-bg);
+  color: var(--values-text);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-48);
+}
+
+.values-image {
+  width: 100%;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  aspect-ratio: 3 / 4;
+  filter: sepia(0.08) brightness(0.9);
+}
+
+.values-prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+.values-pillar h3 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--space-8);
+}
+
+.values-pillar p {
+  color: rgba(240, 237, 230, 0.85);
+  font-size: 0.9375rem;
+  max-width: 65ch;
+  line-height: 1.7;
+}
+
+@media (min-width: 1024px) {
+  .values-grid {
+    grid-template-columns: 30% 1fr;
+    gap: var(--space-64);
+    align-items: start;
   }
 }
 
