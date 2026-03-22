@@ -316,7 +316,7 @@
 
 /* ─── Story Section ─── */
 .story {
-  background: var(--story-bg) url('../images/story-stage.webp') center / cover no-repeat;
+  background: var(--story-bg) url('../images/moth-stage.webp') center / cover no-repeat;
   color: var(--story-text);
   position: relative;
 }
@@ -325,7 +325,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(26, 74, 68, 0.88);
+  background: rgba(26, 74, 68, 0.82);
   z-index: 0;
 }
 
@@ -377,6 +377,54 @@
   .story-grid {
     grid-template-columns: 35% 1fr;
     gap: var(--space-64);
+  }
+}
+
+/* ─── Hero Motto ─── */
+.hero-motto {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: var(--space-24);
+}
+
+/* ─── Story Photo ─── */
+.story-photo {
+  width: 100%;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  margin-top: var(--space-24);
+  filter: sepia(0.12) brightness(0.85) contrast(1.05);
+}
+
+/* ─── Speaking Divider ─── */
+.speaking-divider {
+  height: 280px;
+  background: url('../images/speaking-keynote.webp') center 30% / cover no-repeat;
+  position: relative;
+  padding: 0 !important;
+}
+
+.speaking-divider::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 31, 28, 0.7) 0%,
+    rgba(13, 31, 28, 0.3) 40%,
+    rgba(13, 31, 28, 0.3) 60%,
+    rgba(13, 31, 28, 0.7) 100%
+  );
+}
+
+@media (max-width: 809px) {
+  .speaking-divider {
+    height: 180px;
   }
 }
 
