@@ -428,14 +428,11 @@
   }
 }
 
-/* ─── Work Header with Circle Photo ─── */
-.work-header-with-photo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.work-header-photo {
+/* ─── Work Section Floating Circle Photo ─── */
+.work-float-photo {
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
   width: 140px;
   height: 140px;
   border-radius: 50%;
@@ -443,20 +440,15 @@
   object-position: center 20%;
   border: 3px solid var(--gold);
   box-shadow: 0 0 24px rgba(194, 138, 5, 0.2);
-  flex-shrink: 0;
+  z-index: 1;
 }
 
 @media (max-width: 809px) {
-  .work-header-with-photo {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-16);
-  }
-
-  .work-header-photo {
-    width: 100px;
-    height: 100px;
-    align-self: center;
+  .work-float-photo {
+    width: 90px;
+    height: 90px;
+    top: 1.5rem;
+    right: 1rem;
   }
 }
 
