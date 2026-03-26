@@ -428,30 +428,6 @@
   }
 }
 
-/* ─── Work Section Floating Circle Photo ─── */
-.work-float-photo {
-  position: absolute;
-  top: 2rem;
-  right: 3rem;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center 20%;
-  border: 3px solid var(--gold);
-  box-shadow: 0 0 24px rgba(194, 138, 5, 0.2);
-  z-index: 1;
-}
-
-@media (max-width: 809px) {
-  .work-float-photo {
-    width: 90px;
-    height: 90px;
-    top: 1.5rem;
-    right: 1rem;
-  }
-}
-
 /* ─── Work Section Background ─── */
 #work {
   position: relative;
@@ -518,6 +494,25 @@
     gap: var(--space-64);
     align-items: start;
   }
+}
+
+/* ─── Services Section Background ─── */
+#services {
+  position: relative;
+  background: url('../images/speaking-panel.webp') center / cover no-repeat;
+}
+
+#services::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 31, 28, 0.88);
+  z-index: 0;
+}
+
+#services .container {
+  position: relative;
+  z-index: 1;
 }
 
 /* ─── Services ─── */
