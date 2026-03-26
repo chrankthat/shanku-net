@@ -403,8 +403,8 @@
 
 /* ─── Speaking Divider ─── */
 .speaking-divider {
-  height: 280px;
-  background: url('../images/speaking-keynote.webp') center 30% / cover no-repeat;
+  height: 340px;
+  background: url('../images/speaking-keynote.webp') center 20% / cover no-repeat;
   position: relative;
   padding: 0 !important;
 }
@@ -416,15 +416,15 @@
   background: linear-gradient(
     to bottom,
     rgba(13, 31, 28, 0.7) 0%,
-    rgba(13, 31, 28, 0.3) 40%,
-    rgba(13, 31, 28, 0.3) 60%,
+    rgba(13, 31, 28, 0.2) 30%,
+    rgba(13, 31, 28, 0.2) 70%,
     rgba(13, 31, 28, 0.7) 100%
   );
 }
 
 @media (max-width: 809px) {
   .speaking-divider {
-    height: 180px;
+    height: 240px;
   }
 }
 
