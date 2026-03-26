@@ -496,25 +496,6 @@
   }
 }
 
-/* ─── Services Section Background ─── */
-#services {
-  position: relative;
-  background: url('../images/speaking-panel.webp') center / cover no-repeat;
-}
-
-#services::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(13, 31, 28, 0.88);
-  z-index: 0;
-}
-
-#services .container {
-  position: relative;
-  z-index: 1;
-}
-
 /* ─── Services ─── */
 .service-card {
   padding: var(--space-32);
