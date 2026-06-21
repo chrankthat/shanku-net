@@ -703,3 +703,8 @@
 .fade-in.visible .stat-number {
   animation: amber-pulse 1.2s ease-in-out 0.9s 1;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .section-rule--amber { animation: none; }
+  .fade-in.visible .stat-number { animation: none; }
+}
