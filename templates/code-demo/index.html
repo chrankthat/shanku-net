@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+
+<div data-composition-id="grove-sprint" data-start="0" data-width="1920" data-height="1080">
+
+  <!-- Single scene — full canvas, 10s -->
+  <div id="scene" class="scene clip" data-start="0" data-duration="10" data-track-index="0">
+
+    <!-- Radial background glow (decorative, not audited for layout) -->
+    <div class="bg-glow" data-layout-ignore></div>
+
+    <!-- Brand watermark — top right -->
+    <div id="brand" class="brand-mark">THE GROVE</div>
+
+    <!-- Terminal window — center canvas -->
+    <div id="terminal" class="terminal-window">
+      <div class="t-header">
+        <span class="dot-r"></span>
+        <span class="dot-y"></span>
+        <span class="dot-g"></span>
+        <span class="t-title">trellis — sprint machine</span>
+        <span class="t-spacer"></span>
+      </div>
+      <div class="t-body">
+        <div id="l1"  class="cl l-prompt"><span class="ps">$</span> /sprint shanku-hyperframes-foundation</div>
+        <div id="l2"  class="cl l-muted">Mode: 2 (/sprint) &nbsp;·&nbsp; brand/shanku-hyperframes/v1.1.0/</div>
+        <div id="ls1" class="cl-blank"></div>
+        <div id="l3"  class="cl l-wi"><span class="amb">▸</span> WI-1 &nbsp; npx skills add heygen-com/hyperframes</div>
+        <div id="l4"  class="cl l-ok"><span class="grn">✓</span> 17 skills installed &nbsp;→&nbsp; .claude/skills/</div>
+        <div id="ls2" class="cl-blank"></div>
+        <div id="l5"  class="cl l-wi"><span class="amb">▸</span> WI-2 &nbsp; hyperframes doctor</div>
+        <div id="l6"  class="cl l-ok"><span class="grn">✓</span> Node 25.9.0 &nbsp;·&nbsp; FFmpeg 8.1 &nbsp;·&nbsp; Chrome &nbsp;·&nbsp; all green</div>
+        <div id="ls3" class="cl-blank"></div>
+        <div id="l7"  class="cl l-wi"><span class="amb">▸</span> WI-3 &nbsp; npx hyperframes render</div>
+        <div id="l8"  class="cl l-ok"><span class="grn">✓</span> output.mp4 &nbsp;written</div>
+        <div id="hr1" class="cl-rule"></div>
+        <div id="l9"  class="cl l-gate">regression.sh &nbsp;&nbsp;4/4 &nbsp;PASS</div>
+        <div id="l10" class="cl l-gate">/smoke &nbsp;&nbsp;16/18 &nbsp;&nbsp;(P8 P15 carry-overs)</div>
+        <div id="hr2" class="cl-rule"></div>
+        <div id="l11" class="cl-close"><span class="amb">✓</span>&nbsp; Mode-2 Sprint 12 &nbsp; closed &nbsp; 2026-06-21</div>
+      </div>
+    </div>
+
+  </div><!-- /scene -->
+
+  <style>
+    /* Composition canvas */
+    [data-composition-id="grove-sprint"] {
+      background: #0D1F1C;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Scene fills canvas, centers terminal */
+    .scene {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Subtle radial glow behind terminal */
+    .bg-glow {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 900px 580px at 50% 50%, rgba(194, 138, 5, 0.055) 0%, transparent 70%),
+        radial-gradient(ellipse 1600px 900px at 50% 52%, rgba(22, 46, 42, 0.4) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Brand watermark */
+    .brand-mark {
+      position: absolute;
+      top: 52px;
+      right: 84px;
+      font-family: system-ui, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(194, 138, 5, 0.45);
+    }
+
+    /* Terminal chrome */
+    .terminal-window {
+      width: 1360px;
+      background: #070F0E;
+      border-radius: 14px;
+      border: 1px solid rgba(194, 138, 5, 0.18);
+      box-shadow:
+        0 48px 120px rgba(0, 0, 0, 0.65),
+        0 0 0 1px rgba(194, 138, 5, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      overflow: hidden;
+    }
+
+    .t-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 20px 32px;
+      background: rgba(255, 255, 255, 0.025);
+      border-bottom: 1px solid rgba(194, 138, 5, 0.1);
+    }
+
+    .dot-r { width: 14px; height: 14px; border-radius: 50%; background: #FF5F57; }
+    .dot-y { width: 14px; height: 14px; border-radius: 50%; background: #FEBC2E; }
+    .dot-g { width: 14px; height: 14px; border-radius: 50%; background: #28C840; }
+
+    .t-title {
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(240, 237, 230, 0.32);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      flex: 1;
+      text-align: center;
+    }
+
+    .t-spacer { width: 50px; }
+
+    .t-body {
+      padding: 38px 56px 44px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Code lines */
+    .cl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.55;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      color: #F0EDE6;
+    }
+
+    .cl-blank { height: 14px; }
+    .cl-rule  { height: 1px; background: rgba(194, 138, 5, 0.16); margin: 18px 0; }
+
+    /* Prompt line */
+    .l-prompt .ps { color: rgba(240, 237, 230, 0.28); margin-right: 18px; }
+
+    /* Mode line */
+    .l-muted { color: rgba(240, 237, 230, 0.38); font-size: 23px; font-weight: 400; }
+
+    /* Work item lines */
+    .l-wi { color: rgba(240, 237, 230, 0.78); }
+
+    /* Success lines */
+    .l-ok { color: rgba(240, 237, 230, 0.48); font-size: 24px; font-weight: 400; }
+
+    /* Gate / result lines */
+    .l-gate { color: #C28A05; }
+
+    /* Final close line */
+    .cl-close {
+      font-family: system-ui, sans-serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: #C28A05;
+      letter-spacing: -0.01em;
+      margin-top: 2px;
+    }
+
+    /* Color helpers */
+    .amb { color: #C28A05; margin-right: 14px; }
+    .grn { color: #3DB065; margin-right: 14px; }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    window.__timelines = window.__timelines || {};
+    var tl = gsap.timeline({ paused: true });
+
+    /* Brand watermark entrance */
+    tl.from('#brand',    { opacity: 0, y: -10, duration: 0.5, ease: 'power2.out' }, 0.1);
+
+    /* Terminal window entrance */
+    tl.from('#terminal', { opacity: 0, y: 28,  duration: 0.7, ease: 'power3.out' }, 0.3);
+
+    /* Sequential line reveals - slide left + fade */
+    tl.from('#l1',  { opacity: 0, x: -14, duration: 0.45, ease: 'power2.out'  }, 0.9);
+    tl.from('#l2',  { opacity: 0, x: -8,  duration: 0.35, ease: 'sine.out'    }, 1.45);
+    tl.from('#ls1', { opacity: 0, duration: 0.01 },                               1.85);
+    tl.from('#l3',  { opacity: 0, x: -8,  duration: 0.4,  ease: 'power2.out'  }, 2.0);
+    tl.from('#l4',  { opacity: 0, x: -8,  duration: 0.4,  ease: 'expo.out'    }, 2.6);
+    tl.from('#ls2', { opacity: 0, duration: 0.01 },                               3.1);
+    tl.from('#l5',  { opacity: 0, x: -8,  duration: 0.4,  ease: 'power2.out'  }, 3.25);
+    tl.from('#l6',  { opacity: 0, x: -8,  duration: 0.4,  ease: 'expo.out'    }, 3.8);
+    tl.from('#ls3', { opacity: 0, duration: 0.01 },                               4.3);
+    tl.from('#l7',  { opacity: 0, x: -8,  duration: 0.4,  ease: 'power2.out'  }, 4.45);
+    tl.from('#l8',  { opacity: 0, x: -8,  duration: 0.4,  ease: 'expo.out'    }, 5.05);
+
+    /* Separator rules draw left-to-right */
+    tl.from('#hr1', { scaleX: 0, duration: 0.45, ease: 'power2.out', transformOrigin: 'left center' }, 5.7);
+    tl.from('#l9',  { opacity: 0, x: -8,  duration: 0.4,  ease: 'power2.out'  }, 6.2);
+    tl.from('#l10', { opacity: 0, x: -8,  duration: 0.4,  ease: 'power2.out'  }, 6.75);
+    tl.from('#hr2', { scaleX: 0, duration: 0.4,  ease: 'power2.out', transformOrigin: 'left center' }, 7.3);
+
+    /* Final close line — slide up + fade + slight scale */
+    tl.from('#l11', { opacity: 0, y: 14, scale: 0.97, duration: 0.65, ease: 'power3.out' }, 7.8);
+
+    window.__timelines['grove-sprint'] = tl;
+  </script>
+
+</div>
+
+</body>
+</html>
