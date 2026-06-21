@@ -21,6 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/filmstrip.css">
 </head>
 <body>
 
@@ -45,7 +46,7 @@
   <main id="main">
 
     <!-- ─── Hero ─── -->
-    <section class="hero" aria-label="Introduction">
+    <section id="hero" class="hero" aria-label="Introduction">
       <div class="container">
         <div class="hero-grid">
           <div class="hero-content">
@@ -69,69 +70,52 @@
       </div>
     </section>
 
-    <!-- ─── What I've Built ─── -->
-    <section id="work" aria-label="Projects">
-      <div class="container">
-        <div class="section-header fade-in">
-          <h2 class="section-title">What I've Built</h2>
-          <hr class="section-rule">
-        </div>
+    <!-- ─── What I've Built (Filmstrip) ─── -->
+    <section id="work" class="filmstrip-section" aria-label="Projects">
 
-        <div class="grid-3">
-          <!-- The Grove -->
-          <article class="work-card fade-in">
-            <div class="work-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7l9 5 9-5-9-5z"/><path d="M3 17l9 5 9-5"/><path d="M3 12l9 5 9-5"/></svg>
-            </div>
-            <h3>The Grove</h3>
-            <p>Personal life operating system. Captures email, messages, calls, and journal; composes morning and evening briefs; tracks patterns across work, recovery, and relationships. 20 specialized agents, 57 skills, five domains, one operator. Built on a progressive trust model - supervised today, autonomous eventually. Every sprint ships through a multi-agent review pipeline. It tends to my life even when I'd rather not.</p>
-            <a href="https://thegrove.pro" class="work-card-link btn-text" target="_blank" rel="noopener">thegrove.pro &rarr;</a>
-          </article>
+      <!-- Scroll container; cards injected by js/filmstrip.js -->
+      <div class="filmstrip" id="portfolio"></div>
 
-          <!-- Human in the Loop -->
-          <article class="work-card fade-in fade-in-delay-1">
-            <div class="work-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M8.46 8.46a5 5 0 0 0 0 7.07"/><path d="M5.64 5.64a9 9 0 0 0 0 12.72"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M18.36 5.64a9 9 0 0 1 0 12.72"/></svg>
-            </div>
-            <h3>Human in the Loop</h3>
-            <p>Weekly LinkedIn Live show. Pick one AI tool, build with it on camera, ship the messy honest version in fifteen minutes. Every Friday at 4:05 PM ET. No decks. No Q&amp;A. No retakes. The library grows one episode at a time - consistency is the brand.</p>
-            <a href="https://humanintheloop.stream" class="work-card-link btn-text" target="_blank" rel="noopener">humanintheloop.stream &rarr;</a>
-          </article>
-
-          <!-- AG Law -->
-          <article class="work-card fade-in fade-in-delay-2">
-            <div class="work-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 11 17 15 13"/></svg>
-            </div>
-            <h3>AG Law</h3>
-            <p>AI-powered practice management for a solo estate planning attorney. React + FastAPI, Claude Sonnet drafting six document types, 41 Georgia-statute compliance checks, a Telegram bot that nudges overdue follow-ups without shame scores. Every draft routes to attorney review before any client sees it. Live in production since March 2026. Consulting work - deep vertical beats horizontal SaaS.</p>
-          </article>
-        </div>
-
-        <div class="grid-2" style="margin-top: 1.5rem;">
-          <!-- TendWise -->
-          <article class="work-card fade-in">
-            <div class="work-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            </div>
-            <h3>TendWise</h3>
-            <p>AI-powered real estate SaaS. CTO and co-founder. Predictive analytics, deal scoring, and portfolio intelligence for real estate investors. Same pattern as Grove: intelligent push, not passive pull.</p>
-            <span class="work-card-link" style="color: var(--text-muted); font-size: 0.75rem;">Coming soon</span>
-          </article>
-
-          <!-- The Homelab -->
-          <article class="work-card fade-in fade-in-delay-1">
-            <div class="work-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            </div>
-            <h3>The Homelab</h3>
-            <p>Docker with Portainer, NGINX Proxy Manager, Authentik SSO, CouchDB, pgvector, NAS. Everything self-hosted, self-managed, self-debugged at 11pm when something breaks. Every breakage teaches me something a conference talk never could.</p>
-          </article>
-        </div>
-
-        <p class="work-footnote fade-in">All production. All mine. Built nights and weekends in 2026.</p>
+      <!-- Scroll hint -->
+      <div class="scroll-hint" id="scrollHint">
+        <span class="scroll-hint-arrow">&rsaquo;</span>
+        <span class="scroll-hint-text">SCROLL</span>
       </div>
+
+      <!-- Progress indicator -->
+      <div class="progress-bar">
+        <span class="progress-counter" id="progressCounter">01 / 06</span>
+        <div class="progress-dots" id="progressDots"></div>
+      </div>
+
     </section>
+
+    <!-- ─── Case study drawer (filmstrip) ─── -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Case study">
+      <button class="drawer-close" id="drawerClose" aria-label="Close">&#x2715;</button>
+      <img class="drawer-hero-img" id="drawerHeroImg" src="" alt="">
+      <div class="drawer-body">
+        <div class="drawer-num" id="drawerNum"></div>
+        <div class="drawer-name" id="drawerName"></div>
+        <a class="drawer-url" id="drawerUrl" href="#" target="_blank" rel="noopener noreferrer"></a>
+        <div class="drawer-tag" id="drawerTag"></div>
+        <hr class="drawer-divider">
+        <div class="drawer-section">
+          <div class="drawer-label">Problem</div>
+          <div class="drawer-content" id="drawerProblem"></div>
+        </div>
+        <div class="drawer-section">
+          <div class="drawer-label">Solution</div>
+          <div class="drawer-content" id="drawerSolution"></div>
+        </div>
+        <div class="drawer-section">
+          <div class="drawer-label">Stack</div>
+          <div class="drawer-stack" id="drawerStack"></div>
+        </div>
+        <blockquote class="drawer-quote" id="drawerQuote"></blockquote>
+      </div>
+    </div>
 
     <!-- ─── The Story ─── -->
     <section id="story" class="story" aria-label="Background">
@@ -252,7 +236,7 @@
     </section>
 
     <!-- ─── Stats ─── -->
-    <section class="stats" aria-label="Key numbers">
+    <section id="stats" class="stats" aria-label="Key numbers">
       <div class="container">
         <div class="grid-4">
           <div class="stat fade-in">
@@ -323,5 +307,6 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/filmstrip.js" defer></script>
 </body>
 </html>
