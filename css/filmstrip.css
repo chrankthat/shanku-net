@@ -6,9 +6,13 @@
    ───────────────────────────────────────────── */
 
 /* ---- FILMSTRIP SECTION ---- */
-.filmstrip-section {
+/* The section itself carries the standard `section` padding + header;
+   the stage holds the fixed-height scroll mechanics. */
+#work .container { position: relative; z-index: 1; }
+
+.filmstrip-stage {
   position: relative;
-  height: 88vh;
+  height: 80vh;
   min-height: 500px;
   background: var(--bg);
   overflow: hidden;
@@ -380,7 +384,7 @@
 
 /* ---- MOBILE ---- */
 @media (max-width: 768px) {
-  .filmstrip-section { height: 82vh; min-height: 420px; }
+  .filmstrip-stage { height: 78vh; min-height: 420px; }
   .card { flex: 0 0 85vw; }
   .card:nth-child(odd), .card:nth-child(even),
   .card.active:nth-child(odd), .card.active:nth-child(even) {
