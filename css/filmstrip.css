@@ -6,11 +6,14 @@
    ───────────────────────────────────────────── */
 
 /* ---- FILMSTRIP SECTION ---- */
-/* The section itself carries the standard `section` padding + header;
-   the stage holds the fixed-height scroll mechanics. */
+/* #work (the <section>) carries the standard `section` padding + header.
+   .filmstrip-section is the inner stage holding the fixed-height scroll
+   mechanics. NOTE: this class name is deliberately reused (not renamed) so
+   browsers holding a cached older filmstrip.css still style the stage and
+   keep the absolute progress-bar contained. */
 #work .container { position: relative; z-index: 1; }
 
-.filmstrip-stage {
+.filmstrip-section {
   position: relative;
   height: 80vh;
   min-height: 500px;
@@ -384,7 +387,7 @@
 
 /* ---- MOBILE ---- */
 @media (max-width: 768px) {
-  .filmstrip-stage { height: 78vh; min-height: 420px; }
+  .filmstrip-section { height: 78vh; min-height: 420px; }
   .card { flex: 0 0 85vw; }
   .card:nth-child(odd), .card:nth-child(even),
   .card.active:nth-child(odd), .card.active:nth-child(even) {
