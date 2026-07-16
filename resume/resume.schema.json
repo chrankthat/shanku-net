@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shanku.net/resume/resume.schema.json",
+  "title": "shanku.net resume data",
+  "description": "Source of truth for /resume/. build.py renders index.html + the ATS PDF from this file. additionalProperties is false everywhere so Sprint 2 typos fail loud instead of rendering wrong.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["meta", "identity", "contact", "credentials", "ventures", "career", "skills", "ship_log", "ledger"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["last_updated", "canonical_url", "pdf_filename"],
+      "properties": {
+        "last_updated": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "Set by whoever edits this file. NEVER datetime.now() in build.py - determinism is load-bearing for --check." },
+        "canonical_url": { "type": "string", "format": "uri" },
+        "pdf_filename": { "type": "string" }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "initials", "motto", "oneliner", "avatar", "mbar_cred"],
+      "properties": {
+        "name": { "type": "string" },
+        "initials": { "type": "string", "maxLength": 4 },
+        "motto": { "type": "string", "maxLength": 40, "description": "Rail ceiling: build.py enforces <=40 chars. A two-line motto changes the rail math the design was verified against." },
+        "oneliner": { "type": "string" },
+        "avatar": { "type": "string", "pattern": "^/", "description": "Root-relative. The page lives at /resume/, so relative image paths 404." },
+        "mbar_cred": { "type": "string", "maxLength": 24, "description": "Mobile sticky-bar credential. Short by design: iLink · ex-Microsoft. The designer found the long form clipped the one fact the architecture protects." }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["location", "website", "email", "phone", "linkedin"],
+      "properties": {
+        "location": { "type": "string" },
+        "website": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string", "description": "Empty string omits it from the PDF." },
+        "linkedin": { "type": "string", "description": "Empty string omits it from the PDF." }
+      }
+    },
+    "credentials": {
+      "type": "array",
+      "maxItems": 3,
+      "description": "Rail ceiling: build.py enforces <=3 rows. A fourth row changes the rail math the design was verified against.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "value"],
+        "properties": {
+          "label": { "type": "string" },
+          "value": { "type": "string" }
+        }
+      }
+    },
+    "ventures": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "tag", "body", "field", "signal"],
+        "properties": {
+          "name": { "type": "string" },
+          "tag": { "type": "string" },
+          "body": { "type": "string" },
+          "field": {
+            "description": "The expanded-body field row. WayFact's missing URL is a designed value, not a gap: kind=status renders [status: private beta] in the same field grammar as every other entry's URL. Never fake a link.",
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["kind", "href", "label"],
+                "properties": {
+                  "kind": { "const": "link" },
+                  "href": { "type": "string", "format": "uri" },
+                  "label": { "type": "string" }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["kind", "label"],
+                "properties": {
+                  "kind": { "const": "status" },
+                  "label": { "type": "string" }
+                }
+              }
+            ]
+          },
+          "signal": {
+            "description": "The collapsed-row meta slot. Per-venture-type by design: date for shipping ventures, count for iLink Tools, status chip for WayFact. Sprint 2's sweep must populate this deliberately, not generically.",
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["type", "value"],
+                "properties": {
+                  "type": { "const": "date" },
+                  "value": { "type": "string" }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["type", "value", "caption"],
+                "properties": {
+                  "type": { "const": "count" },
+                  "value": { "type": "integer" },
+                  "caption": { "type": "string" }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["type", "value"],
+                "properties": {
+                  "type": { "const": "status" },
+                  "value": { "type": "string" }
+                }
+              }
+            ]
+          },
+          "exemplars": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "mark", "href", "label", "desc", "embed", "duration"],
+              "properties": {
+                "name": { "type": "string" },
+                "mark": { "type": "string", "maxLength": 3 },
+                "href": { "type": "string", "format": "uri" },
+                "label": { "type": "string" },
+                "desc": { "type": "string" },
+                "embed": { "type": "string", "pattern": "^https://www\\.youtube-nocookie\\.com/embed/", "description": "nocookie only. The facade injects the iframe on click; never a raw iframe in the DOM." },
+                "duration": { "type": "string", "description": "Badge text like 1:56. Empty string omits the badge." }
+              }
+            }
+          },
+          "thesis": { "type": "string", "description": "Closing ruled block. For iLink Tools this is the strongest single claim on the page: SignalScope graduated into WayFact." }
+        }
+      }
+    },
+    "career": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hint", "rows"],
+      "properties": {
+        "hint": { "type": "string" },
+        "rows": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["company", "role", "dates", "detail"],
+            "properties": {
+              "company": { "type": "string" },
+              "role": { "type": "string" },
+              "dates": { "type": "string" },
+              "detail": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["category", "items"],
+        "properties": {
+          "category": { "type": "string" },
+          "items": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+        }
+      }
+    },
+    "ship_log": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "entries"],
+      "properties": {
+        "enabled": { "type": "boolean", "description": "false in Sprint 1: every mockup entry was invented. Sprint 2 populates entries from real repo evidence and flips this." },
+        "entries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["date", "venture", "text"],
+            "properties": {
+              "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+              "venture": { "type": "string" },
+              "text": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "ledger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tools_built"],
+      "properties": {
+        "tools_built": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["count", "automated", "roster_rule"],
+          "properties": {
+            "count": { "type": "integer" },
+            "automated": { "const": false, "description": "Hard-pinned false. The 16 is a hand-curated editorial roster that is NOT derivable from tools.json. build.py's ledger gate asserts this. See TheGrove wiki/decisions/ad192.md before touching." },
+            "roster_rule": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

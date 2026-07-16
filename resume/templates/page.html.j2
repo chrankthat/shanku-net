@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- ============================================================
+     GENERATED FILE - DO NOT HAND-EDIT.
+     Rendered by resume/build.py from resume/resume.json.
+     Edit resume.json (or the templates) and rerun build.py.
+     ============================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
+<title>{{ identity.name }} - Resume</title>
+<meta name="description" content="{{ identity.oneliner }}">
+<meta name="robots" content="noindex, nofollow">
+<meta name="x-resume-source-sha256" content="{{ source_sha }}">
+<meta property="og:title" content="{{ identity.name }} - Resume">
+<meta property="og:description" content="{{ identity.oneliner }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ meta.canonical_url }}">
+<meta property="og:image" content="https://shanku.net/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ identity.name }} - AI Builder, FSI Strategist, Storyteller">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ identity.name }} - Resume">
+<meta name="twitter:description" content="{{ identity.oneliner }}">
+<meta name="twitter:image" content="https://shanku.net/images/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="/images/CJS-logo-round.png" type="image/png">
+<link rel="apple-touch-icon" href="/images/CJS-logo-round.png">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="resume.css">
+<script src="resume.js" defer></script>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ============================================================
+     MOBILE - full identity block (in normal flow, scrolls away)
+     ============================================================ -->
+<div class="m-identity">
+  <div class="avatar" style="width:76px;height:76px;">
+    <span class="fallback">{{ identity.initials }}</span>
+    <img src="{{ identity.avatar }}" alt="{{ identity.name }}" onerror="this.style.display='none'">
+  </div>
+  <p class="ident-name" role="heading" aria-level="1">{{ identity.name }}</p>
+  <p class="motto">{{ identity.motto }}</p>
+  <p class="oneliner">{{ identity.oneliner }}</p>
+  <div class="credentials">
+{%- for cred in credentials %}
+    <div class="row"><span class="label">{{ cred.label }}</span><span class="value">{{ cred.value }}</span></div>
+{%- endfor %}
+  </div>
+  <a class="btn-download" href="/resume/{{ meta.pdf_filename }}" download aria-label="Download resume PDF">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 21h16"/></svg>
+    Download resume (PDF)
+  </a>
+</div>
+
+<!-- ============================================================
+     MOBILE - slim sticky bar. Sticks once m-identity scrolls up.
+     Deliberately one row, ~52px, so it never competes with the
+     notch/browser chrome for real estate.
+     ============================================================ -->
+<div class="m-bar">
+  <div class="avatar" style="width:28px;height:28px;">
+    <span class="fallback">{{ identity.initials }}</span>
+    <img src="{{ identity.avatar }}" alt="" onerror="this.style.display='none'">
+  </div>
+  <span class="name">{{ identity.name }}</span>
+  <span class="cred">{{ identity.mbar_cred }}</span>
+</div>
+
+<div class="dossier">
+
+  <!-- ============================================================
+       DESKTOP - persistent sticky rail (~30% width at lg / 1024px+)
+       ============================================================ -->
+  <aside class="rail" aria-label="Identity and credentials">
+    <div class="avatar">
+      <span class="fallback">{{ identity.initials }}</span>
+      <img src="{{ identity.avatar }}" alt="{{ identity.name }}" onerror="this.style.display='none'">
+    </div>
+    <h1>{{ identity.name }}</h1>
+    <p class="motto">{{ identity.motto }}</p>
+    <p class="oneliner">{{ identity.oneliner }}</p>
+
+    <div class="credentials">
+{%- for cred in credentials %}
+      <div class="row"><span class="label">{{ cred.label }}</span><span class="value">{{ cred.value }}</span></div>
+{%- endfor %}
+    </div>
+
+    <a class="btn-download" href="/resume/{{ meta.pdf_filename }}" download aria-label="Download resume PDF">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 21h16"/></svg>
+      Download resume (PDF)
+    </a>
+{%- if ship_log.enabled and ship_log.entries %}
+
+    <!-- Rail footer: sparkline mirrors the full log in #timeline below.
+         Same source data, compressed. Not decoration. -->
+    <div class="sparkline-wrap">
+      <div class="sparkline-cap"><span>Ship log</span><b>{{ ship_log.entries | length }} ships · {{ ship_log.entries[0].date[:4] }}</b></div>
+      <div class="sparkline">
+        <svg viewBox="0 0 200 34" preserveAspectRatio="none" aria-hidden="true">
+          <polyline class="spark-path" points="{{ sparkline_points }}"/>
+          <circle class="spark-dot" cx="200" cy="4" r="2.2"/>
+        </svg>
+      </div>
+      <div class="sparkline-foot"><span>Jan</span><span>last: {{ ship_log.entries[0].date }}</span></div>
+    </div>
+{%- endif %}
+  </aside>
+
+  <!-- ============================================================
+       MAIN - scrolling zone: Ventures, Career, Skills
+       ============================================================ -->
+  <main id="main">
+
+    <!-- ---------------- Ventures ---------------- -->
+    <section id="ventures" aria-label="Ventures">
+      <div class="section-head">
+        <h2 class="section-title">Ventures</h2>
+        <span class="hint">{{ ventures | length }} entries · tap to expand</span>
+      </div>
+
+      <div class="ledger">
+{%- for v in ventures %}
+
+        <details class="venture">
+          <summary>
+            <span class="marker" aria-hidden="true">+</span>
+            <span class="venture-main">
+              <span class="venture-name">{{ v.name }}</span>
+              <span class="venture-tag">{{ v.tag }}</span>
+            </span>
+{%- if v.signal.type == 'count' %}
+            <span class="venture-meta is-total"><small>{{ v.signal.caption }}</small>{{ v.signal.value }}</span>
+{%- else %}
+            <span class="venture-meta">{{ v.signal.value }}</span>
+{%- endif %}
+          </summary>
+          <div class="venture-body">
+            <p>{{ v.body }}</p>
+{%- if v.field.kind == 'link' %}
+            <a class="venture-field" href="{{ v.field.href }}" target="_blank" rel="noopener">{{ v.field.label }}</a>
+{%- else %}
+            <span class="venture-field">{{ v.field.label }}</span>
+{%- endif %}
+{%- if v.exemplars %}
+
+            <div class="exemplars">
+{%- for ex in v.exemplars %}
+
+              <div class="exemplar">
+                <div class="facade" tabindex="0" role="button"
+                     aria-label="Play {{ ex.name }} demo video"
+                     data-embed="{{ ex.embed }}">
+                  <span class="mono-mark">{{ ex.mark }}</span>
+                  <span class="play"><span><svg viewBox="0 0 10 10"><polygon points="0,0 10,5 0,10"/></svg></span></span>
+{%- if ex.duration %}
+                  <span class="dur">{{ ex.duration }}</span>
+{%- endif %}
+                </div>
+                <div class="exemplar-body">
+                  <div class="head">
+                    <span class="exemplar-name">{{ ex.name }}</span>
+                    <a class="exemplar-url" href="{{ ex.href }}" target="_blank" rel="noopener">{{ ex.label }}</a>
+                  </div>
+                  <p>{{ ex.desc }}</p>
+                </div>
+              </div>
+{%- endfor %}
+
+            </div>
+{%- endif %}
+{%- if v.thesis %}
+
+            <div class="thesis">
+              <p>{{ v.thesis }}</p>
+            </div>
+{%- endif %}
+          </div>
+        </details>
+{%- endfor %}
+
+      </div>
+    </section>
+
+    <!-- ---------------- Career ---------------- -->
+    <section id="career" aria-label="Career history">
+      <div class="section-head">
+        <h2 class="section-title">Career</h2>
+        <span class="hint">{{ career.hint }}</span>
+      </div>
+
+      <div>
+{%- for row in career.rows %}
+        <div class="career-row">
+          <div>
+            <div class="career-co">{{ row.company }}</div>
+            <div class="career-role">{{ row.role }}</div>
+          </div>
+          <div class="career-dates">{{ row.dates }}</div>
+          <p class="career-detail">{{ row.detail }}</p>
+        </div>
+{%- endfor %}
+      </div>
+    </section>
+
+    <!-- ---------------- Skills ---------------- -->
+    <section id="skills" aria-label="Skills and stack">
+      <div class="section-head">
+        <h2 class="section-title">Skills</h2>
+      </div>
+{%- for group in skills %}
+
+      <div class="skill-group">
+        <span class="cat">{{ group.category }}</span>
+        <div class="skill-list">
+          {% for item in group['items'] %}<span>{{ item }}</span>{% endfor %}
+        </div>
+      </div>
+{%- endfor %}
+    </section>
+{%- if ship_log.enabled and ship_log.entries %}
+
+    <!-- ---------------- Shipping timeline (full) ---------------- -->
+    <section id="timeline" aria-label="Shipping timeline">
+      <div class="section-head">
+        <h2 class="section-title">Shipping log</h2>
+        <span class="hint">reverse-chronological · self-updating</span>
+      </div>
+
+      <div class="timeline">
+{%- for entry in ship_log.entries %}
+        <div class="t-row"><div class="t-date">{{ entry.date }}</div><div class="t-body"><span class="t-tag">{{ entry.venture }}</span>{{ entry.text }}</div></div>
+{%- endfor %}
+      </div>
+    </section>
+{%- endif %}
+
+  </main>
+</div>
+
+<footer class="page-footer">
+  shanku.net/resume &middot; last updated {{ meta.last_updated }}
+</footer>
+
+</body>
+</html>

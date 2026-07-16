@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "last_updated": "2026-07-16",
+    "canonical_url": "https://shanku.net/resume/",
+    "pdf_filename": "chris-shanku-resume.pdf"
+  },
+  "identity": {
+    "name": "Chris J Shanku",
+    "initials": "CJS",
+    "motto": "I create trust through truth.",
+    "oneliner": "I spent 8 years at Microsoft selling AI. Now I build it - for the life I almost lost.",
+    "avatar": "/images/avatar.webp",
+    "mbar_cred": "iLink · ex-Microsoft"
+  },
+  "contact": {
+    "location": "Atlanta, GA",
+    "website": "shanku.net",
+    "email": "TODO: email address to publish on the PDF resume",
+    "phone": "TODO: phone number for the PDF resume, or replace with an empty string to omit",
+    "linkedin": "TODO: LinkedIn profile URL for the PDF resume, or replace with an empty string to omit"
+  },
+  "credentials": [
+    { "label": "Microsoft", "value": "8 years" },
+    { "label": "iLink Digital", "value": "Senior Director" },
+    { "label": "Location", "value": "Atlanta, GA" }
+  ],
+  "ventures": [
+    {
+      "name": "The Grove",
+      "tag": "Personal LifeOS · Multi-agent",
+      "body": "The LifeOS I built for my family and me.",
+      "field": { "kind": "link", "href": "https://thegrove.pro", "label": "thegrove.pro" },
+      "signal": { "type": "date", "value": "TODO: latest Grove ship date YYYY-MM-DD. The mockup draft 2026-06-02 came from an invented timeline; supply the real date" }
+    },
+    {
+      "name": "Human in the Loop",
+      "tag": "TODO: confirm tag. Mockup draft: Media · LinkedIn Live · Weekly since Mar 2026. The since-date derives from the invented timeline",
+      "body": "A live show about AI, built with AI.",
+      "field": { "kind": "link", "href": "https://humanintheloop.stream", "label": "humanintheloop.stream" },
+      "signal": { "type": "date", "value": "TODO: latest Human in the Loop ship date YYYY-MM-DD. Mockup draft 2026-04-18 came from an invented timeline" }
+    },
+    {
+      "name": "iLink Tools",
+      "tag": "AI tools for an FSI sales team",
+      "body": "Tools I built with agents so my team sells smarter.",
+      "field": { "kind": "link", "href": "https://ilink.tools", "label": "ilink.tools" },
+      "signal": { "type": "count", "value": 16, "caption": "Tools built" },
+      "exemplars": [
+        {
+          "name": "Frontier Forge",
+          "mark": "FF",
+          "href": "https://forge.ilink.tools",
+          "label": "forge.ilink.tools",
+          "desc": "AI prototype builder: describe an agent, get a working prototype.",
+          "embed": "https://www.youtube-nocookie.com/embed/Ynf0YfFjERo",
+          "duration": "TODO: confirm the duration badge for the Frontier Forge video. Mockup draft 1:56. Replace with an empty string to omit"
+        },
+        {
+          "name": "Fieldline",
+          "mark": "FL",
+          "href": "https://fieldline.ilink.tools",
+          "label": "fieldline.ilink.tools",
+          "desc": "FSI intelligence hub: daily Microsoft signals and account intel for FSI sellers.",
+          "embed": "https://www.youtube-nocookie.com/embed/_zzSSwQUdwE",
+          "duration": "TODO: confirm the duration badge for the Fieldline video. Mockup draft 2:12. Replace with an empty string to omit"
+        },
+        {
+          "name": "WireDesk",
+          "mark": "WD",
+          "href": "https://wiredesk.ilink.tools",
+          "label": "wiredesk.ilink.tools",
+          "desc": "Agent patterns for regulated banking workflows: signature match, PoA review, branch close.",
+          "embed": "https://www.youtube-nocookie.com/embed/jpEFXD0_gmg",
+          "duration": ""
+        }
+      ],
+      "thesis": "SignalScope graduated into WayFact."
+    },
+    {
+      "name": "twelfth.help",
+      "tag": "Recovery · Daily delivery",
+      "body": "Carrying the message to the person who needs it.",
+      "field": { "kind": "link", "href": "https://twelfth.help", "label": "twelfth.help" },
+      "signal": { "type": "date", "value": "TODO: latest twelfth.help ship date YYYY-MM-DD. Mockup draft 2026-05-21 came from an invented timeline" }
+    },
+    {
+      "name": "WayFact",
+      "tag": "FSI data curation",
+      "body": "FSI data curation, from signal to fact.",
+      "field": { "kind": "status", "label": "[status: private beta]" },
+      "signal": { "type": "status", "value": "[private beta]" }
+    }
+  ],
+  "career": {
+    "hint": "8+ years FSI",
+    "rows": [
+      {
+        "company": "iLink Digital",
+        "role": "Senior Director, FSI Practice",
+        "dates": "2025 - present",
+        "detail": "TODO: one-sentence scope claim for the iLink row. The mockup's draft, Building a $4M financial-services AI practice from zero: GTM, delivery, and the tools the team sells with, contains an INVENTED $4M figure. Supply the real claim; it must not contain the substring 4M (EC-15)"
+      },
+      {
+        "company": "Microsoft",
+        "role": "Solutions Engineer → Sales, Financial Services",
+        "dates": "2017 - 2025",
+        "detail": "TODO: verify the split. Mockup draft: 8 years selling AI into financial services. Five years as a Solutions Engineer, three in sales. Plausible but unverified"
+      }
+    ]
+  },
+  "skills": [
+    {
+      "category": "Agents & AI",
+      "items": ["TODO: confirm chips for this group. Mockup draft: Multi-agent orchestration | Prompt engineering | Model routing | RAG | Behavioral guardrails"]
+    },
+    {
+      "category": "Data & Backend",
+      "items": ["TODO: confirm chips for this group. Mockup draft: Python | FastAPI | Postgres | pgvector"]
+    },
+    {
+      "category": "Cloud & Infra",
+      "items": ["TODO: confirm chips for this group. Mockup draft: Azure | Docker | GCP | Linux homelab"]
+    },
+    {
+      "category": "GTM & Storytelling",
+      "items": ["TODO: confirm chips for this group. Mockup draft: FSI go-to-market | Keynote speaking | Technical storytelling | Partner strategy"]
+    }
+  ],
+  "ship_log": {
+    "enabled": false,
+    "entries": []
+  },
+  "ledger": {
+    "tools_built": {
+      "count": 16,
+      "automated": false,
+      "roster_rule": "16 = 13 public tools (15 named tools.json manifest entries minus retired LoanLens and iMandate) + iExpense + Ascent + OnePager, with OnePager called out as standalone by editorial decision even though it ships inside FSI Showcase. This is Chris's hand-curated editorial roster. It is NOT derivable from ilink-tools tools.json (it excludes manifest internal tools ATO Hub and Microsoft FSI Accounts, and adds OnePager which the manifest counts inside the 13). Never recompute this number. Never automate it. Framing is built, never live: two of the 16 are retired and SignalScope is under construction. See TheGrove wiki/decisions/ad192.md."
+    }
+  }
+}

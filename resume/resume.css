@@ -1,0 +1,344 @@
+/* ============================================================
+   resume.css - direction B "The Dossier", ported from
+   docs/design/2026-07-16-dynamic-resume/direction-b.html (TheGrove).
+   Tokens come from ../css/tokens.css. Do NOT import css/main.css:
+   base.css + layout.css silently destroy this layout
+   (p max-width, h1 clamp, a color, section padding-block).
+   See TheGrove wiki/decisions/ad192.md.
+   ============================================================ */
+
+*{ box-sizing:border-box; }
+html{ background:var(--bg); }
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:var(--font-body); font-size:16px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+::selection{ background:var(--accent); color:#0D1F1C; }
+
+a{ color:inherit; }
+
+/* ---------- Skip link ---------- */
+.skip-link{
+  position:absolute; left:-999px; top:0; z-index:100;
+  background:var(--accent); color:#0D1F1C; padding:.6rem 1rem;
+  font-family:var(--font-mono); font-size:.8rem; font-weight:700;
+}
+.skip-link:focus{ left:.5rem; top:.5rem; }
+
+/* ---------- Focus visibility (WCAG) ---------- */
+a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-visible{
+  outline:2px solid var(--accent); outline-offset:2px; border-radius:2px;
+}
+summary::-webkit-details-marker{ display:none; }
+summary{ list-style:none; }
+
+/* ---------- Eyebrow / mono labels ---------- */
+.eyebrow{
+  font-family:var(--font-mono); font-size:.7rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--text-muted); font-weight:500;
+}
+.section-title{
+  font-family:var(--font-display); font-weight:600; font-size:1.5rem; color:var(--text);
+  letter-spacing:-.01em;
+}
+
+/* =========================================================
+   MOBILE IDENTITY BLOCK - in-flow, full content, not sticky.
+   Scrolls away naturally; the slim bar below it takes over.
+   ========================================================= */
+.m-identity{
+  display:block;
+  background:var(--surface);
+  border-bottom:1px solid var(--card-border);
+  padding:1.75rem 1.25rem 1.5rem;
+}
+@media (min-width:1024px){ .m-identity{ display:none; } }
+.m-identity .avatar{ width:76px; height:76px; }
+.m-identity .ident-name{
+  font-family:var(--font-display); font-size:1.5rem; font-weight:700; margin:.9rem 0 .15rem;
+  letter-spacing:-.01em;
+}
+.m-identity .motto{
+  font-family:var(--font-body); font-style:italic; color:var(--accent); font-size:.95rem; margin:0 0 .65rem;
+}
+.m-identity .oneliner{
+  font-size:.9rem; color:var(--text); opacity:.92; margin:0 0 1rem; max-width:34rem;
+}
+
+/* Credentials - rendered as a mono ledger even in the rail/identity block */
+.credentials{ font-family:var(--font-mono); font-size:.78rem; }
+.credentials .row{
+  display:flex; justify-content:space-between; gap:.75rem;
+  padding:.5rem 0; border-top:1px solid var(--card-border);
+}
+.credentials .row:first-child{ border-top:1px solid var(--card-border); }
+.credentials .label{ color:var(--text); font-weight:600; letter-spacing:.02em; }
+.credentials .value{ color:var(--text-muted); text-align:right; }
+
+.btn-download{
+  display:inline-flex; align-items:center; gap:.5rem; margin-top:1.1rem;
+  font-family:var(--font-mono); font-size:.75rem; font-weight:600; letter-spacing:.04em;
+  color:var(--bg); background:var(--accent); border:1px solid var(--accent);
+  padding:.75rem 1rem; min-height:44px; border-radius:4px;
+  text-decoration:none; transition:background 200ms ease-out, transform 200ms ease-out;
+}
+.btn-download:hover{ background:var(--accent-hover); border-color:var(--accent-hover); }
+.btn-download:active{ transform:translateY(1px); }
+.btn-download svg{ width:14px; height:14px; flex:none; }
+
+/* =========================================================
+   MOBILE STICKY BAR - the slim collapsed rail.
+   Sticks to the top once m-identity scrolls past it.
+   Kept deliberately short: one row, ~52px total.
+   ========================================================= */
+.m-bar{
+  position:sticky; top:0; z-index:40;
+  display:flex; align-items:center; gap:.6rem;
+  background:rgba(13,31,28,.92); backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--card-border);
+  padding:.5rem .9rem;
+  padding-top:calc(.5rem + env(safe-area-inset-top, 0px));
+}
+@media (min-width:1024px){ .m-bar{ display:none; } }
+.m-bar .avatar{ width:28px; height:28px; flex:none; }
+.m-bar .name{
+  font-family:var(--font-display); font-weight:600; font-size:.82rem; white-space:nowrap;
+}
+.m-bar .cred{
+  font-family:var(--font-mono); font-size:.66rem; color:var(--text-muted);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  border-left:1px solid var(--card-border); padding-left:.6rem; margin-left:.1rem;
+}
+
+/* Avatar (shared: real image with a graceful CSS fallback) */
+.avatar{
+  position:relative; border-radius:6px; overflow:hidden; flex:none;
+  background:linear-gradient(155deg,#1A4A44 0%, var(--surface) 55%, var(--card-bg) 100%);
+  border:1px solid var(--card-border);
+}
+.avatar .fallback{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-mono); font-weight:700; color:var(--accent);
+  letter-spacing:.02em;
+}
+.m-identity .avatar .fallback, .rail .avatar .fallback{ font-size:1.6rem; }
+.m-bar .avatar .fallback{ font-size:.62rem; }
+.avatar img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:2;
+}
+
+/* =========================================================
+   DESKTOP RAIL - sticky left column, ~30% width at lg+.
+   ========================================================= */
+.rail{
+  display:none;
+  background:var(--surface);
+  border-right:1px solid var(--card-border);
+}
+.dossier{ display:block; }
+@media (min-width:1024px){
+  .dossier{ display:flex; }
+  .rail{
+    position:sticky; top:0; height:100vh; overflow-y:auto;
+    flex:0 0 31%; width:31%; padding:3rem 2.25rem 2rem;
+    display:flex; flex-direction:column;
+  }
+  .rail .avatar{ width:104px; height:104px; }
+  .rail h1{
+    font-family:var(--font-display); font-weight:700; font-size:1.9rem; margin:1.25rem 0 .3rem;
+    letter-spacing:-.01em; line-height:1.1;
+  }
+  .rail .motto{
+    font-family:var(--font-body); font-style:italic; color:var(--accent); font-size:1.02rem; margin:0 0 1rem;
+  }
+  .rail .oneliner{ font-size:.92rem; color:var(--text); opacity:.92; margin:0 0 1.75rem; }
+  .rail .credentials{ margin-bottom:2.25rem; }
+  .rail .sparkline-wrap{ margin-top:2rem; padding-top:1.25rem; border-top:1px solid var(--card-border); }
+}
+
+/* =========================================================
+   SPARKLINE - the rail's footer. A compressed echo of the
+   same dated log rendered in full inside #timeline below.
+   Not decoration: same source data, different resolution.
+   (Disabled in Sprint 1 - ship_log.enabled is false until the
+   entries are real. CSS kept so Sprint 2 only flips the flag.)
+   ========================================================= */
+.sparkline-wrap{
+  font-family:var(--font-mono);
+}
+.sparkline-cap{
+  display:flex; justify-content:space-between; font-size:.66rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--text-muted); margin-bottom:.5rem;
+}
+.sparkline-cap b{ color:var(--accent); font-weight:600; }
+.sparkline svg{ width:100%; height:34px; display:block; }
+.spark-path{
+  fill:none; stroke:var(--accent); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:400; stroke-dashoffset:400;
+  animation:draw 1.6s ease-out .2s forwards;
+}
+.spark-fill{ fill:var(--accent-subtle); }
+.spark-dot{ fill:var(--accent); }
+@keyframes draw{ to{ stroke-dashoffset:0; } }
+@media (prefers-reduced-motion:reduce){
+  .spark-path{ animation:none; stroke-dashoffset:0; }
+}
+.sparkline-foot{ display:flex; justify-content:space-between; font-size:.68rem; color:var(--text-muted); margin-top:.35rem; }
+
+/* =========================================================
+   MAIN COLUMN
+   ========================================================= */
+main{ padding:2rem 1.25rem 4rem; max-width:56rem; }
+@media (min-width:1024px){
+  main{ padding:3.25rem 3.5rem 5rem; flex:1; min-width:0; max-width:none; }
+}
+
+section + section{ margin-top:2.75rem; }
+.section-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:1rem; gap:1rem; }
+.section-head .hint{ font-family:var(--font-mono); font-size:.68rem; color:var(--text-muted); white-space:nowrap; }
+
+/* ---------- Ventures ledger ---------- */
+.ledger{ border-top:1px solid var(--rule); }
+details.venture{ border-bottom:1px solid var(--rule); }
+
+details.venture > summary{
+  display:grid;
+  grid-template-columns:28px 1fr auto;
+  align-items:center; gap:.6rem;
+  padding:.95rem .15rem;
+  cursor:pointer; min-height:44px;
+  -webkit-tap-highlight-color:transparent;
+}
+details.venture > summary:hover .venture-name{ color:var(--accent); }
+
+.marker{
+  width:22px; height:22px; border:1px solid var(--card-border); border-radius:4px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-mono); font-weight:700; font-size:.85rem; color:var(--accent);
+  transition:transform 200ms ease-out, border-color 200ms ease-out, background 200ms ease-out;
+}
+details.venture > summary:hover .marker{ border-color:var(--accent); }
+details[open] .marker{ transform:rotate(45deg); background:var(--accent-subtle); }
+
+.venture-main{ min-width:0; display:flex; flex-wrap:wrap; align-items:baseline; column-gap:.65rem; row-gap:.15rem; }
+.venture-name{
+  font-family:var(--font-display); font-weight:600; font-size:1.02rem; color:var(--text);
+  transition:color 200ms ease-out;
+}
+.venture-tag{
+  font-family:var(--font-mono); font-size:.72rem; color:var(--text-muted);
+  letter-spacing:.01em;
+}
+
+.venture-meta{
+  font-family:var(--font-mono); font-size:.74rem; color:var(--text-muted);
+  text-align:right; white-space:nowrap;
+}
+.venture-meta.is-total{ color:var(--accent); font-weight:700; font-size:.85rem; }
+.venture-meta.is-total small{ display:block; font-weight:500; color:var(--text-muted); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; }
+
+.venture-body{
+  padding:0 .15rem 1.35rem 34px;
+}
+.venture-body p{ margin:0 0 .6rem; font-size:.92rem; color:var(--text); max-width:38rem; }
+.venture-field{
+  display:inline-block; font-family:var(--font-mono); font-size:.8rem; color:var(--text-muted);
+  border-bottom:1px dotted var(--card-border); padding-bottom:1px;
+}
+a.venture-field:hover{ color:var(--accent); border-color:var(--accent); }
+
+/* ---------- iLink Tools exemplars ---------- */
+.exemplars{ margin-top:1rem; border-top:1px solid var(--card-border); }
+.exemplar{
+  display:grid; grid-template-columns:104px 1fr; gap:.85rem;
+  padding:.95rem 0; border-bottom:1px solid var(--card-border);
+  align-items:start;
+}
+@media (min-width:640px){ .exemplar{ grid-template-columns:120px 1fr; } }
+
+.facade{
+  position:relative; aspect-ratio:16/9; border-radius:4px; overflow:hidden;
+  background:linear-gradient(155deg,#1A4A44, var(--card-bg));
+  border:1px solid var(--card-border);
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  min-height:44px;
+}
+.facade .mono-mark{
+  font-family:var(--font-mono); font-weight:700; font-size:.8rem; color:rgba(240,237,230,.35);
+  letter-spacing:.05em;
+}
+.facade .play{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+}
+.facade .play span{
+  width:26px; height:26px; border-radius:50%; background:rgba(13,31,28,.55);
+  border:1px solid rgba(194,138,5,.65);
+  display:flex; align-items:center; justify-content:center;
+  transition:background 200ms ease-out, border-color 200ms ease-out;
+}
+.facade:hover .play span{ background:var(--accent); border-color:var(--accent); }
+.facade:hover .play svg{ fill:#0D1F1C; }
+.facade .play svg{ width:9px; height:9px; fill:var(--accent); margin-left:1px; transition:fill 200ms ease-out; }
+.facade .dur{
+  position:absolute; right:5px; bottom:5px; font-family:var(--font-mono); font-size:.66rem;
+  color:var(--text-muted); background:rgba(13,31,28,.7); padding:1px 4px; border-radius:2px;
+}
+.facade iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+
+.exemplar-body .head{ display:flex; flex-wrap:wrap; align-items:baseline; gap:.5rem; }
+.exemplar-name{ font-family:var(--font-mono); font-weight:600; font-size:.88rem; color:var(--text); }
+.exemplar-name::before{ content:"›"; color:var(--accent); margin-right:.35rem; }
+.exemplar-url{ font-family:var(--font-mono); font-size:.7rem; color:var(--text-muted); text-decoration:none; border-bottom:1px dotted var(--card-border); }
+.exemplar-url:hover{ color:var(--accent); border-color:var(--accent); }
+.exemplar-body p{ margin:.3rem 0 0; font-size:.84rem; color:var(--text-muted); max-width:34rem; }
+
+/* ---------- SignalScope closing thesis block ---------- */
+.thesis{
+  margin-top:1.1rem; padding:.85rem 1rem; border-left:2px solid var(--accent);
+  background:rgba(255,255,255,.045);
+}
+.thesis p{
+  margin:0; font-family:var(--font-body); font-weight:700; font-size:.98rem; color:var(--text);
+}
+
+/* ---------- Career ledger ---------- */
+.career-row{
+  display:grid; grid-template-columns:1fr auto; gap:.5rem 1rem;
+  padding:1rem 0; border-bottom:1px solid var(--rule);
+  align-items:baseline;
+}
+.career-row:first-child{ border-top:1px solid var(--rule); }
+.career-co{ font-family:var(--font-display); font-weight:600; font-size:1rem; }
+.career-role{ font-family:var(--font-mono); font-size:.78rem; color:var(--text-muted); margin-top:.2rem; }
+.career-dates{ font-family:var(--font-mono); font-size:.78rem; color:var(--accent); text-align:right; white-space:nowrap; }
+.career-detail{ grid-column:1/-1; font-size:.86rem; color:var(--text); opacity:.92; margin:.15rem 0 0; max-width:38rem; }
+
+/* ---------- Skills ---------- */
+.skill-group{ margin-bottom:1.1rem; }
+.skill-group .cat{
+  font-family:var(--font-mono); font-size:.68rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--text-muted); margin-bottom:.5rem; display:block;
+}
+.skill-list{ display:flex; flex-wrap:wrap; gap:.4rem .5rem; }
+.skill-list span{
+  font-family:var(--font-mono); font-size:.78rem; color:var(--text);
+  border:1px solid var(--card-border); border-radius:4px; padding:.28rem .55rem;
+}
+
+/* ---------- Timeline (full, main column) ---------- */
+.timeline{ border-top:1px solid var(--rule); }
+.t-row{
+  display:grid; grid-template-columns:96px 1fr; gap:.75rem;
+  padding:.75rem 0; border-bottom:1px solid var(--rule);
+}
+.t-date{ font-family:var(--font-mono); font-size:.74rem; color:var(--accent); white-space:nowrap; }
+.t-body{ font-size:.86rem; }
+.t-tag{ font-family:var(--font-mono); font-size:.68rem; color:var(--text-muted); margin-right:.5rem; }
+
+footer.page-footer{
+  font-family:var(--font-mono); font-size:.68rem; color:var(--text-muted);
+  padding:2rem 1.25rem 3rem; border-top:1px solid var(--card-border);
+}
+@media (min-width:1024px){ footer.page-footer{ padding-left:3.5rem; } }

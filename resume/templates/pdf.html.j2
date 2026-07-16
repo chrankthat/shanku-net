@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{ identity.name }} - Resume</title>
+<style>
+  /* ATS rules: single column, no tables, no images, no icons,
+     black on white, system Helvetica/Arial only. Brand fonts are
+     deliberately absent - Google Fonts in a print render would make
+     the build network-dependent and nondeterministic. */
+  body{
+    font-family: Helvetica, Arial, sans-serif;
+    color:#000; background:#fff;
+    font-size:10.5pt; line-height:1.45;
+    margin:0;
+  }
+  h1{ font-size:17pt; margin:0 0 2pt; letter-spacing:.02em; }
+  .contact{ font-size:9.5pt; margin:0 0 14pt; color:#000; }
+  h2{
+    font-size:10.5pt; text-transform:uppercase; letter-spacing:.12em;
+    border-bottom:1pt solid #000; padding-bottom:2pt; margin:14pt 0 6pt;
+  }
+  p{ margin:0 0 5pt; }
+  .row{ margin:0 0 8pt; }
+  .row-head{ font-weight:bold; }
+  .dates{ font-weight:normal; }
+  .muted-line{ font-size:9.5pt; }
+  .skills p{ margin:0 0 3pt; }
+  .foot{ font-size:8.5pt; margin-top:16pt; color:#000; }
+</style>
+</head>
+<body>
+
+  <h1>{{ identity.name }}</h1>
+  <p class="contact">
+    {{ contact.location }} &middot; {{ contact.email }}{% if contact.phone %} &middot; {{ contact.phone }}{% endif %} &middot; {{ contact.website }}{% if contact.linkedin %} &middot; {{ contact.linkedin }}{% endif %}
+  </p>
+
+  <h2>Summary</h2>
+  <p>{{ identity.oneliner }}</p>
+
+  <h2>Experience</h2>
+{%- for row in career.rows %}
+  <div class="row">
+    <p class="row-head">{{ row.role }}, {{ row.company }} <span class="dates">({{ row.dates }})</span></p>
+    <p>{{ row.detail }}</p>
+  </div>
+{%- endfor %}
+
+  <h2>Ventures</h2>
+{%- for v in ventures %}
+  <div class="row">
+    <p class="row-head">{{ v.name }} <span class="dates">({{ v.tag }})</span></p>
+    <p>{{ v.body }}
+{%- if v.signal.type == 'count' %} {{ v.signal.value }} {{ v.signal.caption | lower }}.
+{%- endif %}
+{%- if v.field.kind == 'link' %} {{ v.field.label }}
+{%- else %} {{ v.field.label | replace('[', '') | replace(']', '') | capitalize }}
+{%- endif %}</p>
+{%- if v.exemplars %}
+    <p class="muted-line">Selected tools: {% for ex in v.exemplars %}{{ ex.name }} ({{ ex.label }}){% if not loop.last %}, {% endif %}{% endfor %}.</p>
+{%- endif %}
+{%- if v.thesis %}
+    <p class="muted-line">{{ v.thesis }}</p>
+{%- endif %}
+  </div>
+{%- endfor %}
+
+  <h2>Skills</h2>
+  <div class="skills">
+{%- for group in skills %}
+    <p><strong>{{ group.category }}:</strong> {{ group['items'] | join(', ') }}</p>
+{%- endfor %}
+  </div>
+
+  <p class="foot">Updated {{ meta.last_updated }} &middot; {{ meta.canonical_url }}</p>
+
+</body>
+</html>

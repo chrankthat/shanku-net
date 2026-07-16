@@ -1,0 +1,4 @@
+# resume/build.py + verify.py dependencies (both already on Trunk)
+jinja2>=3.1
+playwright>=1.40
+# optional: jsonschema (build.py validates resume.json against resume.schema.json when present)
