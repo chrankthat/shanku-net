@@ -26,31 +26,65 @@
     "linkedin_display": "linkedin.shanku.net"
   },
   "credentials": [
-    { "label": "Microsoft", "value": "8 years" },
-    { "label": "iLink Digital", "value": "Senior Director" },
-    { "label": "Location", "value": "Atlanta, GA" }
+    {
+      "label": "Microsoft",
+      "value": "8 years"
+    },
+    {
+      "label": "iLink Digital",
+      "value": "Senior Director"
+    },
+    {
+      "label": "Location",
+      "value": "Atlanta, GA"
+    }
   ],
   "ventures": [
     {
       "name": "The Grove",
       "tag": "Personal LifeOS · Multi-agent",
       "body": "The Grove is the personal life operating system I built for my family and me - a multi-agent harness that captures what matters across work, recovery, co-parenting, and health, then pushes the right nudge at the right moment. It runs on a homelab I own end to end, and it treats my own life like a product I ship to every day.",
-      "field": { "kind": "link", "href": "https://thegrove.pro", "label": "thegrove.pro" },
-      "signal": { "type": "date", "value": "2026-06-28" }
+      "field": {
+        "kind": "link",
+        "href": "https://thegrove.pro",
+        "label": "thegrove.pro"
+      },
+      "signal": {
+        "type": "date",
+        "value": "2026-06-28"
+      }
     },
     {
       "name": "Human in the Loop",
       "tag": "Media · LinkedIn Live · Every Friday",
       "body": "Human in the Loop is a weekly LinkedIn Live show about building with AI - made with AI at every step, from research to the on-air graphics. Each episode works a real problem in the open instead of pitching a finished answer, so the audience sees the messy middle where a human still has to make the call.",
-      "field": { "kind": "link", "href": "https://humanintheloop.stream", "label": "humanintheloop.stream" },
-      "signal": { "type": "count", "value": 15, "caption": "episodes", "display": "inline" }
+      "field": {
+        "kind": "link",
+        "href": "https://humanintheloop.stream",
+        "label": "humanintheloop.stream"
+      },
+      "signal": {
+        "type": "count",
+        "value": 15,
+        "caption": "episodes",
+        "display": "inline"
+      }
     },
     {
       "name": "iLink Tools",
       "tag": "AI tools for an FSI sales team",
       "body": "iLink Tools is the internal suite I built with agents so an FSI sales team sells smarter - meeting prep, competitive intel, account research, and regulated-workflow patterns, all wired to the signals a seller actually acts on. Sixteen tools have shipped so far, each one earning its place by removing a real piece of manual work from the week.",
-      "field": { "kind": "link", "href": "https://ilink.tools", "label": "ilink.tools" },
-      "signal": { "type": "count", "value": 16, "caption": "Tools built", "display": "ledger" },
+      "field": {
+        "kind": "link",
+        "href": "https://ilink.tools",
+        "label": "ilink.tools"
+      },
+      "signal": {
+        "type": "count",
+        "value": 16,
+        "caption": "Tools built",
+        "display": "ledger"
+      },
       "exemplars": [
         {
           "name": "Frontier Forge",
@@ -86,15 +120,28 @@
       "name": "twelfth.help",
       "tag": "Recovery · Daily delivery",
       "body": "twelfth.help carries a daily recovery message to the person who needs it, the way the twelfth step asks us to carry it to the next one still struggling. It is a productized sibling of the step work I do every morning - free and open for anyone in recovery, with a managed track for the fellowships and programs that want it run for them.",
-      "field": { "kind": "link", "href": "https://twelfth.help", "label": "twelfth.help" },
-      "signal": { "type": "date", "value": "2026-06-29" }
+      "field": {
+        "kind": "link",
+        "href": "https://twelfth.help",
+        "label": "twelfth.help"
+      },
+      "signal": {
+        "type": "date",
+        "value": "2026-06-29"
+      }
     },
     {
       "name": "WayFact",
       "tag": "FSI data curation",
       "body": "WayFact is an FSI data-curation engine that turns raw market signal into verified, decision-ready fact - the productized graduation of the SignalScope work I built inside iLink Tools. It runs as a standalone venture under TheGrove AI LLC, focused on the one thing regulated financial-services teams cannot outsource to a hallucinating model: knowing what is actually true.",
-      "field": { "kind": "status", "label": "[status: private beta]" },
-      "signal": { "type": "status", "value": "[private beta]" }
+      "field": {
+        "kind": "status",
+        "label": "[status: private beta]"
+      },
+      "signal": {
+        "type": "status",
+        "value": "[private beta]"
+      }
     }
   ],
   "storytelling": {
@@ -102,9 +149,24 @@
       "name": "The Moth",
       "kicker": "4 performances · Atlanta",
       "wins": [
-        { "event": "StorySLAM - Winner", "title": "It's Time", "date": "Dec 2024", "youtube": "https://www.youtube.com/watch?v=2Lj3Ujrk2Ys" },
-        { "event": "StorySLAM - 2nd Place", "title": "The Divorce", "date": "Feb 2025", "youtube": "https://www.youtube.com/watch?v=tfvotn5Ic9s" },
-        { "event": "GrandSLAM - 9.0/10", "title": "I Knew You'd Come Back", "date": "Jun 2025", "youtube": "https://www.youtube.com/watch?v=GCjMqI_WAEs" }
+        {
+          "event": "StorySLAM - Winner",
+          "title": "It's Time",
+          "date": "Dec 2024",
+          "youtube": "https://www.youtube.com/watch?v=2Lj3Ujrk2Ys"
+        },
+        {
+          "event": "StorySLAM - 2nd Place",
+          "title": "The Divorce",
+          "date": "Feb 2025",
+          "youtube": "https://www.youtube.com/watch?v=tfvotn5Ic9s"
+        },
+        {
+          "event": "GrandSLAM - 9.0/10",
+          "title": "I Knew You'd Come Back",
+          "date": "Jun 2025",
+          "youtube": "https://www.youtube.com/watch?v=GCjMqI_WAEs"
+        }
       ],
       "blurb": "Award-winning storyteller and regular performer at The Moth. Stories draw on fatherhood, recovery, career pivots, and the courage to say yes before you know how."
     },
@@ -112,24 +174,61 @@
       "name": "Speaking & Mentoring",
       "kicker": "C-suite keynotes · UGA guest lecturer",
       "stats": [
-        { "cap": "Engagements", "num": "12" },
-        { "cap": "Reached", "num": "595+" },
-        { "cap": "Span", "num": "2018-2026" },
-        { "cap": "UGA semesters", "num": "8" }
+        {
+          "cap": "Engagements",
+          "num": "12"
+        },
+        {
+          "cap": "Reached",
+          "num": "595+"
+        },
+        {
+          "cap": "Span",
+          "num": "2018-2026"
+        },
+        {
+          "cap": "UGA semesters",
+          "num": "8"
+        }
       ],
       "engagements": [
-        { "label": "COCA-COLA '24" },
-        { "label": "MBCA '24" },
-        { "label": "ALLY '24" },
-        { "label": "CDAO '23" },
-        { "label": "GENAI TOUR '23 (OCT)" },
-        { "label": "GENAI TOUR '23 (AUG)" },
-        { "label": "GENAI TOUR '23 (JUN)" },
-        { "label": "NELNET '23" },
-        { "label": "UGA DIAD '22" },
-        { "label": "UGA MATH '21+" },
-        { "label": "FSI FRIDAYS '20", "play": true },
-        { "label": "PBI WORLD TOUR '18" }
+        {
+          "label": "COCA-COLA '24"
+        },
+        {
+          "label": "MBCA '24"
+        },
+        {
+          "label": "ALLY '24"
+        },
+        {
+          "label": "CDAO '23"
+        },
+        {
+          "label": "GENAI TOUR '23 (OCT)"
+        },
+        {
+          "label": "GENAI TOUR '23 (AUG)"
+        },
+        {
+          "label": "GENAI TOUR '23 (JUN)"
+        },
+        {
+          "label": "NELNET '23"
+        },
+        {
+          "label": "UGA DIAD '22"
+        },
+        {
+          "label": "UGA MATH '21+"
+        },
+        {
+          "label": "FSI FRIDAYS '20",
+          "play": true
+        },
+        {
+          "label": "PBI WORLD TOUR '18"
+        }
       ]
     },
     "mantra": "I am curious and compassionate. I am mindful and grateful. I answer the mail and help the next one in line. I live for community and am worthy of success. I am a man of integrity."
@@ -161,7 +260,10 @@
           "Named to Microsoft's Executive Briefing Center (EBC) speaker list for AI and Fabric; keynoted the Microsoft + OpenAI partnership to a top-200 exec audience.",
           "Only FSI representative selected for the Atlanta Innovation Hub Ambassadors program, giving tours and demos as a proxy Innovation Hub Architect."
         ],
-        "awards": ["Hero Award (Dec 2022)", "Making It Happen nomination (Jan 2024)"]
+        "awards": [
+          "Hero Award (Dec 2022)",
+          "Making It Happen nomination (Jan 2024)"
+        ]
       },
       {
         "company": "Microsoft",
@@ -173,7 +275,9 @@
           "Hosted 40+ Power BI Dashboard-in-a-Day workshops; selected to speak at Power BI World Tour (Oct 2018).",
           "Delivered >1,000% VTT in FY20 as Power Platform Technical Specialist; led biweekly PBI SWAT sessions across Modern Work, Data & AI, and Biz Apps."
         ],
-        "awards": ["Peer Nominated Award (Sep 2019)"]
+        "awards": [
+          "Peer Nominated Award (Sep 2019)"
+        ]
       },
       {
         "company": "Valorem Consulting",
@@ -211,46 +315,245 @@
     ]
   },
   "signature_strengths": [
-    { "name": "Storytelling", "score": 5.0 },
-    { "name": "Public Speaking", "score": 4.5 },
-    { "name": "CxO Presence", "score": 4.5 },
-    { "name": "Data Strategy", "score": 4.5 },
-    { "name": "AI Strategy", "score": 4.0 }
+    {
+      "name": "Storytelling",
+      "score": 5.0
+    },
+    {
+      "name": "Public Speaking",
+      "score": 4.5
+    },
+    {
+      "name": "CxO Presence",
+      "score": 4.5
+    },
+    {
+      "name": "Data Strategy",
+      "score": 4.5
+    },
+    {
+      "name": "AI Strategy",
+      "score": 4.0
+    }
   ],
   "skills": [
-    { "category": "Cloud Platforms", "items": ["Microsoft Azure", "Microsoft 365", "Google Workspace"] },
-    { "category": "AI / ML", "items": ["Azure OpenAI", "Anthropic Claude", "Google Gemini", "LangChain", "pgvector", "RAG architectures", "AI agent frameworks"] },
-    { "category": "Data & Analytics", "items": ["Microsoft Fabric", "Power BI (9 yrs)", "SQL Server", "CouchDB", "PostgreSQL", "Databricks", "DAX"] },
-    { "category": "Development", "items": ["Python", "JavaScript / TypeScript", "React", "FastAPI", ".NET / C#", "PowerShell"] },
-    { "category": "Automation", "items": ["n8n", "Power Automate", "Power Platform", "Docker", "GitHub Actions"] },
-    { "category": "Pre-Sales", "items": ["Solution architecture", "Proposal development", "Technical discovery", "RFP response", "Executive briefings", "Partner enablement"] }
+    {
+      "category": "Cloud Platforms",
+      "items": [
+        "Microsoft Azure",
+        "Microsoft 365",
+        "Google Workspace"
+      ]
+    },
+    {
+      "category": "AI / ML",
+      "items": [
+        "Azure OpenAI",
+        "Anthropic Claude",
+        "Google Gemini",
+        "LangChain",
+        "pgvector",
+        "RAG architectures",
+        "AI agent frameworks"
+      ]
+    },
+    {
+      "category": "Data & Analytics",
+      "items": [
+        "Microsoft Fabric",
+        "Power BI (9 yrs)",
+        "SQL Server",
+        "CouchDB",
+        "PostgreSQL",
+        "Databricks",
+        "DAX"
+      ]
+    },
+    {
+      "category": "Development",
+      "items": [
+        "Python",
+        "JavaScript / TypeScript",
+        "React",
+        "FastAPI",
+        ".NET / C#",
+        "PowerShell"
+      ]
+    },
+    {
+      "category": "Automation",
+      "items": [
+        "n8n",
+        "Power Automate",
+        "Power Platform",
+        "Docker",
+        "GitHub Actions"
+      ]
+    },
+    {
+      "category": "Pre-Sales",
+      "items": [
+        "Solution architecture",
+        "Proposal development",
+        "Technical discovery",
+        "RFP response",
+        "Executive briefings",
+        "Partner enablement"
+      ]
+    }
   ],
   "education": [
-    { "school": "University of Georgia", "degree": "Bachelor of Science, Mathematics", "location": "Athens, GA" }
+    {
+      "school": "University of Georgia",
+      "degree": "Bachelor of Science, Mathematics",
+      "location": "Athens, GA"
+    }
   ],
   "certifications": [
-    { "issuer": "Microsoft", "items": ["Azure AI Fundamentals", "Azure Data Fundamentals", "Power Platform Fundamentals", "Microsoft 365 Fundamentals", "Power BI Data Analyst", "MCSE Data Management & Analytics", "MCSA BI Reporting", "Microsoft Certified Trainer"] },
-    { "issuer": "Kimball Group", "items": ["Dimensional Modeling in Depth"] },
-    { "issuer": "Dale Carnegie", "items": ["Present to Persuade", "Powerful Conversations", "Disagree Agreeably"] }
+    {
+      "issuer": "Microsoft",
+      "items": [
+        "Azure AI Fundamentals",
+        "Azure Data Fundamentals",
+        "Power Platform Fundamentals",
+        "Microsoft 365 Fundamentals",
+        "Power BI Data Analyst",
+        "MCSE Data Management & Analytics",
+        "MCSA BI Reporting",
+        "Microsoft Certified Trainer"
+      ]
+    },
+    {
+      "issuer": "Kimball Group",
+      "items": [
+        "Dimensional Modeling in Depth"
+      ]
+    },
+    {
+      "issuer": "Dale Carnegie",
+      "items": [
+        "Present to Persuade",
+        "Powerful Conversations",
+        "Disagree Agreeably"
+      ]
+    }
   ],
   "principles": {
-    "values": ["Community", "Compassion", "Curiosity", "Gratitude", "Leadership"],
+    "values": [
+      "Community",
+      "Compassion",
+      "Curiosity",
+      "Gratitude",
+      "Leadership"
+    ],
     "books": [
-      { "title": "Atomic Habits", "author": "James Clear" },
-      { "title": "Storyworthy", "author": "Matthew Dicks" },
-      { "title": "Never Split the Difference", "author": "Chris Voss" },
-      { "title": "Someday is Today", "author": "Matthew Dicks" },
-      { "title": "Boundaries", "author": "Henry Cloud" },
-      { "title": "The Obstacle is the Way", "author": "Ryan Holiday" }
+      {
+        "title": "Atomic Habits",
+        "author": "James Clear"
+      },
+      {
+        "title": "Storyworthy",
+        "author": "Matthew Dicks"
+      },
+      {
+        "title": "Never Split the Difference",
+        "author": "Chris Voss"
+      },
+      {
+        "title": "Someday is Today",
+        "author": "Matthew Dicks"
+      },
+      {
+        "title": "Boundaries",
+        "author": "Henry Cloud"
+      },
+      {
+        "title": "The Obstacle is the Way",
+        "author": "Ryan Holiday"
+      }
     ],
     "quotes": [
-      { "text": "As long as you live, keep learning how to live.", "cite": "Seneca" },
-      { "text": "If someone offers you an amazing opportunity but you are not sure you can do it, say yes - then learn how to do it later.", "cite": "Richard Branson" }
+      {
+        "text": "As long as you live, keep learning how to live.",
+        "cite": "Seneca"
+      },
+      {
+        "text": "If someone offers you an amazing opportunity but you are not sure you can do it, say yes - then learn how to do it later.",
+        "cite": "Richard Branson"
+      }
     ]
   },
   "ship_log": {
     "enabled": true,
-    "entries": []
+    "entries": [
+      {
+        "date": "2026-07-16",
+        "venture": "Human in the Loop",
+        "text": "Shipped dynamic shorts generation on Remotion and automated multi-episode video publishing pipeline.",
+        "source_commits": [
+          {
+            "sha": "b3f88a6d5b1e01c4be9a1e16ee168d73b929bb50",
+            "repo": "/Users/trunk/human-in-the-loop",
+            "subject": "content(ep016): generative YouTube thumbnail (video-headshot + agent pick)"
+          },
+          {
+            "sha": "f904ec078e1c6e27ce67bf0d4fb02ec58e724949",
+            "repo": "/Users/trunk/human-in-the-loop",
+            "subject": "turnover: EP.014 aired - page revealed, video public"
+          },
+          {
+            "sha": "37daa2ae9048979f315db5010785281d736135d8",
+            "repo": "/Users/trunk/human-in-the-loop",
+            "subject": "turnover: rotate to EP.015 next - overlays + countdown re-baked"
+          },
+          {
+            "sha": "9671f7ce9b4251f8f30ba04321164c90e415ea60",
+            "repo": "/Users/trunk/human-in-the-loop",
+            "subject": "close: EP.014 air-day turnover - aired, published, rotated to EP.015"
+          },
+          {
+            "sha": "7c96c3e185b84037b25565aa837769a4ef18c43e",
+            "repo": "/Users/trunk/human-in-the-loop",
+            "subject": "fix(nextup): re-bake kickoff overlays on rotation"
+          },
+          {
+            "sha": "c9caccc8cd67207ff14513652b57fdd5b3f78d80",
+            "repo": "/Users/trunk/human-in-the-loop",
+            "subject": "turnover: EP.014 re-record - new video + shorts, advanced to EP.015"
+          },
+          {
+            "sha": "85af968ef23eda6f9972ec53f78b0ae65149308e",
+            "repo": "/Users/trunk/human-in-the-loop",
+            "subject": "prod: c1.4 Dynamic Shorts on Remotion"
+          },
+          {
+            "sha": "c5e93d0a01630f11d70e1be8a0b5e1764c5de765",
+            "repo": "/Users/trunk/human-in-the-loop",
+            "subject": "prod: c1.4 Dynamic Shorts on Remotion - DEPLOYED"
+          },
+          {
+            "sha": "3e18607c468d7a37d826458f1bb2107a8e4c5b13",
+            "repo": "/Users/trunk/human-in-the-loop",
+            "subject": "close: c1.4 Dynamic Shorts on Remotion - produced dynamic verticals proven on ep013, wiring queued as c1.5"
+          },
+          {
+            "sha": "c7e1b974f5f73cbdd874c9251ef559da106becfe",
+            "repo": "/Users/trunk/human-in-the-loop",
+            "subject": "turnover: EP.015 aired - page revealed, video public"
+          },
+          {
+            "sha": "705e1a5786c9ce73210c926dbb8331c2aebcd645",
+            "repo": "/Users/trunk/human-in-the-loop",
+            "subject": "nextup: EP.016 promoted to next - overlays rotated (countdown Jul 17, closing COMING SOON fallback)"
+          },
+          {
+            "sha": "ce6aa6e978e0b0f6ae17db3ad4e154a5241401c2",
+            "repo": "/Users/trunk/human-in-the-loop",
+            "subject": "turnover: EP.015 show-notes status + LinkedIn draft held for Monday"
+          }
+        ]
+      }
+    ]
   },
   "ledger": {
     "tools_built": {
