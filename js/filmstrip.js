@@ -31,10 +31,10 @@
     {
       "num": "03", "name": "iLink Tools", "url": "ilink.tools",
       "desc": "Tools I built with Agents so my team sells smarter",
-      "tag": "FSI AI Platform · 12+ tools · Live",
+      "tag": "FSI AI Platform · 16 tools built · Live",
       "shot": "shots/ilink-tools.jpg",
       "problem": "FSI sales cycles die in discovery. You can't differentiate with a deck when every Microsoft partner claims the same AI capabilities. iLink needed a way to compress months of \"show them what we can do\" into a single sales call.",
-      "solution": "A live portfolio of 12+ working AI tools for FSI customers and Microsoft sellers - opened on a laptop during the meeting, not described in a follow-up proposal. FabricGuard validates Azure Fabric BCDR in real time. iBrief pulls SEC filings and generates a talk track in seconds. WireDesk demos AI document review with GPT-4.1 vision. One of those tools - SignalScope - became WayFact.",
+      "solution": "16 AI tools built for FSI customers and Microsoft sellers - the portfolio opens on a laptop during the meeting, not described in a follow-up proposal. FabricGuard validates Azure Fabric BCDR in real time. iBrief pulls SEC filings and generates a talk track in seconds. WireDesk demos AI document review with GPT-4.1 vision. One of those tools - SignalScope - became WayFact.",
       "stack": ["React + Vite", "FastAPI + Flask", "Azure VM + Cosmos DB", "Claude API (Anthropic)", "Azure OpenAI (GPT-4.1)", "Cloudflare Pages + Tunnel", "Docker Compose"],
       "quote": "iLink doesn't talk about innovation. iLink builds it."
     },
