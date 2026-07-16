@@ -88,8 +88,21 @@ def desktop_gates(p):
     rail_frac = page.eval_on_selector(".rail", "el => el.getBoundingClientRect().width / 1280")
     check("desktop: rail width/1280 in [0.29,0.33]", 0.29 <= rail_frac <= 0.33, f"got {rail_frac:.3f}")
 
-    skills_top = page.eval_on_selector("#skills", "el => el.getBoundingClientRect().top")
-    check("desktop: #skills top < 900 (skim path above the fold)", skills_top < 900, f"got {skills_top:.0f}px")
+    # v2 skim path is AI Portfolio (5 collapsed rows) before Storytelling, not Skills.
+    ventures_top = page.eval_on_selector("#ventures", "el => el.getBoundingClientRect().top")
+    check("desktop: #ventures (AI Portfolio) top < 900 (skim path above the fold)", ventures_top < 900, f"got {ventures_top:.0f}px")
+
+    # v2 content-completeness (the v1 rejection was thin content):
+    check("desktop: details.career-item count == 6", page.locator("details.career-item").count() == 6,
+          f"got {page.locator('details.career-item').count()}")
+    check("desktop: contact email link rendered on page", page.locator("a[href^='mailto:']").count() >= 1)
+    check("desktop: contact tel link rendered on page", page.locator("a[href^='tel:']").count() >= 1)
+    check("desktop: 3 Moth YouTube links", page.locator(".story-win .w-yt").count() == 3,
+          f"got {page.locator('.story-win .w-yt').count()}")
+    check("desktop: speaking statline present (4 stat pairs)", page.locator(".stat-row .stat-pair").count() == 4,
+          f"got {page.locator('.stat-row .stat-pair').count()}")
+    check("desktop: signature-strengths Top-5 strip present", page.locator(".sig-skills .sig-row").count() == 5,
+          f"got {page.locator('.sig-skills .sig-row').count()}")
 
     # Index-based targeting from resume.json order: has_text matches body
     # text too (the iLink thesis contains "WayFact"), so name filters collide.
@@ -182,11 +195,15 @@ def js_off_gates(p):
     page = context.new_page()
     page.goto(BASE, wait_until="load")
 
-    check("js-off: all 5 details present", page.locator("details.venture").count() == 5)
+    check("js-off: all 5 venture details present", page.locator("details.venture").count() == 5)
+    check("js-off: all 6 career details present", page.locator("details.career-item").count() == 6)
 
     content = page.content()
     missing = [v["name"] for v in DATA["ventures"] if v["body"] not in content]
     check("js-off: every venture body text in DOM source", not missing, f"missing: {missing}")
+
+    mantra = DATA["storytelling"]["mantra"]
+    check("js-off: storytelling mantra in DOM source", mantra in content)
 
     # text_content, not inner_text: .thesis sits inside a closed <details>,
     # and inner_text of layout-hidden content is empty by spec.
@@ -209,21 +226,23 @@ def pdf_gates():
         ["pdftotext", "-layout", str(PDF_PATH), "-"], capture_output=True, text=True, check=True
     ).stdout
 
-    for needle in ["Chris J Shanku", "Microsoft", "iLink Digital", "WayFact", "16", "private beta",
+    for needle in ["Chris J Shanku", "Microsoft", "iLink", "Valorem", "Avanade",
+                   "University of Georgia", "WayFact", "16", "private beta",
                    "SignalScope graduated into WayFact."]:
         check(f"pdf: contains {needle!r}", needle in text)
     check("pdf: does NOT contain bracketed '[private beta]'", "[private beta]" not in text)
     check(
-        "pdf: 'Microsoft' appears before 'Ventures' (ATS DOM order)",
-        "Microsoft" in text and "Ventures" in text and text.index("Microsoft") < text.index("Ventures"),
+        "pdf: 'Experience' appears before 'AI Portfolio' (ATS DOM order)",
+        "Experience" in text and "AI Portfolio" in text and text.index("Experience") < text.index("AI Portfolio"),
     )
     check("pdf: no em dash", "—" not in text)
+    check("pdf: no en dash", "–" not in text)
 
     pages = int(
         [l for l in subprocess.run(["pdfinfo", str(PDF_PATH)], capture_output=True, text=True, check=True)
          .stdout.splitlines() if l.startswith("Pages:")][0].split()[-1]
     )
-    check("pdf: page count <= 2", pages <= 2, f"got {pages}")
+    check("pdf: page count >= 2 (full-classic)", pages >= 2, f"got {pages}")
 
 
 def main():

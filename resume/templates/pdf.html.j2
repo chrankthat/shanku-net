@@ -7,35 +7,44 @@
   /* ATS rules: single column, no tables, no images, no icons,
      black on white, system Helvetica/Arial only. Brand fonts are
      deliberately absent - Google Fonts in a print render would make
-     the build network-dependent and nondeterministic. */
+     the build network-dependent and nondeterministic.
+     v2: full-classic - 6 roles with bullets, education, certifications. */
   body{
     font-family: Helvetica, Arial, sans-serif;
     color:#000; background:#fff;
-    font-size:10.5pt; line-height:1.45;
+    font-size:10.5pt; line-height:1.4;
     margin:0;
   }
   h1{ font-size:17pt; margin:0 0 2pt; letter-spacing:.02em; }
-  .contact{ font-size:9.5pt; margin:0 0 14pt; color:#000; }
+  .contact{ font-size:9.5pt; margin:0 0 12pt; color:#000; }
   /* No text-transform / letter-spacing on headings: spaced glyphs extract
      as "S U M M A RY" in pdftotext and real ATS parsers choke the same way. */
   h2{
     font-size:10.5pt; font-weight:bold;
-    border-bottom:1pt solid #000; padding-bottom:2pt; margin:14pt 0 6pt;
+    border-bottom:1pt solid #000; padding-bottom:2pt; margin:13pt 0 6pt;
   }
   p{ margin:0 0 5pt; }
-  .row{ margin:0 0 8pt; }
-  .row-head{ font-weight:bold; }
+  .role{ margin:0 0 9pt; }
+  .role-head{ font-weight:bold; margin:0 0 1pt; }
+  .role-sub{ font-size:9.5pt; margin:0 0 3pt; }
   .dates{ font-weight:normal; }
-  .muted-line{ font-size:9.5pt; }
+  ul{ margin:2pt 0 0; padding-left:16pt; }
+  li{ margin:0 0 2pt; }
+  .awards{ font-size:9pt; margin:3pt 0 0; }
+  .edu-line{ margin:0 0 4pt; }
+  .certs-line{ margin:0 0 3pt; }
   .skills p{ margin:0 0 3pt; }
-  .foot{ font-size:8.5pt; margin-top:16pt; color:#000; }
+  .venture{ margin:0 0 7pt; }
+  .venture-head{ font-weight:bold; }
+  .muted-line{ font-size:9.5pt; }
+  .foot{ font-size:8.5pt; margin-top:14pt; color:#000; }
 </style>
 </head>
 <body>
 
   <h1>{{ identity.name }}</h1>
   <p class="contact">
-    {{ contact.location }} &middot; {{ contact.email }}{% if contact.phone %} &middot; {{ contact.phone }}{% endif %} &middot; {{ contact.website }}{% if contact.linkedin %} &middot; {{ contact.linkedin }}{% endif %}
+    {{ contact.location }} &middot; {{ contact.email }}{% if contact.phone %} &middot; {{ contact.phone }}{% endif %} &middot; {{ contact.website }}{% if contact.linkedin_display %} &middot; {{ contact.linkedin_display }}{% endif %}
   </p>
 
   <h2>Summary</h2>
@@ -43,29 +52,28 @@
 
   <h2>Experience</h2>
 {%- for row in career.rows %}
-  <div class="row">
-    <p class="row-head">{{ row.role }}, {{ row.company }} <span class="dates">({{ row.dates }})</span></p>
-    <p>{{ row.detail }}</p>
+  <div class="role">
+    <p class="role-head">{{ row.role }}, {{ row.company }}{% if row.company_note %} {{ row.company_note }}{% endif %} <span class="dates">({{ row.dates }})</span></p>
+    <p class="role-sub">{{ row.location }}</p>
+    <ul>
+{%- for b in row.bullets %}
+      <li>{{ b }}</li>
+{%- endfor %}
+    </ul>
+{%- if row.awards %}
+    <p class="awards"><strong>Awards:</strong> {{ row.awards | join(' · ') }}</p>
+{%- endif %}
   </div>
 {%- endfor %}
 
-  <h2>Ventures</h2>
-{%- for v in ventures %}
-  <div class="row">
-    <p class="row-head">{{ v.name }} <span class="dates">({{ v.tag }})</span></p>
-    <p>{{ v.body }}
-{%- if v.signal.type == 'count' %} {{ v.signal.value }} {{ v.signal.caption | lower }}.
-{%- endif %}
-{%- if v.field.kind == 'link' %} {{ v.field.label }}
-{%- else %} {{ v.field.label | replace('[', '') | replace(']', '') | capitalize }}
-{%- endif %}</p>
-{%- if v.exemplars %}
-    <p class="muted-line">Selected tools: {% for ex in v.exemplars %}{{ ex.name }} ({{ ex.label }}){% if not loop.last %}, {% endif %}{% endfor %}.</p>
-{%- endif %}
-{%- if v.thesis %}
-    <p class="muted-line">{{ v.thesis }}</p>
-{%- endif %}
-  </div>
+  <h2>Education</h2>
+{%- for edu in education %}
+  <p class="edu-line"><strong>{{ edu.school }}</strong> - {{ edu.degree }} ({{ edu.location }})</p>
+{%- endfor %}
+
+  <h2>Certifications</h2>
+{%- for group in certifications %}
+  <p class="certs-line"><strong>{{ group.issuer }}:</strong> {{ group['items'] | join(', ') }}</p>
 {%- endfor %}
 
   <h2>Skills</h2>
@@ -74,6 +82,29 @@
     <p><strong>{{ group.category }}:</strong> {{ group['items'] | join(', ') }}</p>
 {%- endfor %}
   </div>
+
+  <h2>AI Portfolio</h2>
+{%- for v in ventures %}
+  <div class="venture">
+    <p class="venture-head">{{ v.name }} <span class="dates">({{ v.tag }})</span></p>
+    <p>{{ v.body }}</p>
+{%- if v.signal.type == 'count' %}
+    <p class="muted-line">{{ v.signal.value }} {{ v.signal.caption | lower }}.{% if v.field.kind == 'link' %} {{ v.field.label }}{% endif %}</p>
+{%- elif v.field.kind == 'link' %}
+    <p class="muted-line">{{ v.field.label }}</p>
+{%- else %}
+    <p class="muted-line">Status: private beta.</p>
+{%- endif %}
+{%- if v.thesis %}
+    <p class="muted-line">{{ v.thesis }}</p>
+{%- endif %}
+  </div>
+{%- endfor %}
+
+  <h2>Storytelling &amp; Speaking</h2>
+  <p>{{ storytelling.moth.blurb }}</p>
+  <p class="muted-line">The Moth: {% for w in storytelling.moth.wins %}{{ w.event }} ({{ w.title }}, {{ w.date }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>
+  <p class="muted-line">Speaking: {% for s in storytelling.speaking.stats %}{{ s.num }} {{ s.cap | lower }}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
 
   <p class="foot">Updated {{ meta.last_updated }} &middot; {{ meta.canonical_url }}</p>
 

@@ -23,7 +23,6 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ identity.name }} - Resume">
 <meta name="twitter:description" content="{{ identity.oneliner }}">
-<meta name="twitter:image" content="https://shanku.net/images/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -33,6 +32,23 @@
 <link rel="stylesheet" href="resume.css">
 <script src="resume.js" defer></script>
 </head>
+{%- macro contact_block() %}
+  <div class="contact">
+    <span class="cap">Contact</span>
+    <a href="mailto:{{ contact.email }}">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      <span class="c-val">{{ contact.email }}</span>
+    </a>
+    <a href="tel:{{ tel_href }}">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.5-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7a2 2 0 0 1 1.7 2Z"/></svg>
+      <span class="c-val">+1 {{ contact.phone }}</span>
+    </a>
+    <a href="{{ contact.linkedin }}" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      <span class="c-val">{{ contact.linkedin_display }}</span>
+    </a>
+  </div>
+{%- endmacro %}
 <body>
 
 <a href="#main" class="skip-link">Skip to content</a>
@@ -57,12 +73,11 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 21h16"/></svg>
     Download resume (PDF)
   </a>
+{{ contact_block() }}
 </div>
 
 <!-- ============================================================
      MOBILE - slim sticky bar. Sticks once m-identity scrolls up.
-     Deliberately one row, ~52px, so it never competes with the
-     notch/browser chrome for real estate.
      ============================================================ -->
 <div class="m-bar">
   <div class="avatar" style="width:28px;height:28px;">
@@ -97,6 +112,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 21h16"/></svg>
       Download resume (PDF)
     </a>
+{{ contact_block() }}
 {%- if ship_log.enabled and ship_log.entries %}
 
     <!-- Rail footer: sparkline mirrors the full log in #timeline below.
@@ -109,20 +125,20 @@
           <circle class="spark-dot" cx="200" cy="4" r="2.2"/>
         </svg>
       </div>
-      <div class="sparkline-foot"><span>Jan</span><span>last: {{ ship_log.entries[0].date }}</span></div>
+      <div class="sparkline-foot"><span>{{ ship_log.entries[-1].date[:4] }}</span><span>last: {{ ship_log.entries[0].date }}</span></div>
     </div>
 {%- endif %}
   </aside>
 
   <!-- ============================================================
-       MAIN - scrolling zone: Ventures, Career, Skills
+       MAIN - AI Portfolio, Storytelling, Career, Skills, Credentials, Ship log
        ============================================================ -->
   <main id="main">
 
-    <!-- ---------------- Ventures ---------------- -->
-    <section id="ventures" aria-label="Ventures">
+    <!-- ---------------- AI Portfolio ---------------- -->
+    <section id="ventures" aria-label="AI Portfolio">
       <div class="section-head">
-        <h2 class="section-title">Ventures</h2>
+        <h2 class="section-title">AI Portfolio</h2>
         <span class="hint">{{ ventures | length }} entries · tap to expand</span>
       </div>
 
@@ -191,31 +207,116 @@
       </div>
     </section>
 
-    <!-- ---------------- Career ---------------- -->
+    <!-- ---------------- Storytelling (differentiator, before Career) ---------------- -->
+    <section id="storytelling" aria-label="Storytelling and community">
+      <div class="section-head">
+        <h2 class="section-title">Storytelling &amp; Community</h2>
+        <span class="hint">on and off the stage</span>
+      </div>
+
+      <div class="story-block">
+        <div class="story-head">
+          <span class="story-name">{{ storytelling.moth.name }}</span>
+          <span class="story-kicker">{{ storytelling.moth.kicker }}</span>
+        </div>
+        <div class="story-wins">
+{%- for w in storytelling.moth.wins %}
+          <span class="story-win">
+            <span class="w-event">{{ w.event }}</span>
+            <span class="w-title">"{{ w.title }}"</span>
+            <span class="w-foot">
+              <span class="w-meta">{{ w.date }}</span>
+              <a class="w-yt" href="{{ w.youtube }}" target="_blank" rel="noopener" aria-label="Watch &quot;{{ w.title }}&quot; on YouTube">
+                <svg viewBox="0 0 28 20" aria-hidden="true"><rect class="yt-bg" width="28" height="20" rx="5"/><polygon points="11,6 20,10 11,14" fill="#0D1F1C"/></svg>
+              </a>
+            </span>
+          </span>
+{%- endfor %}
+        </div>
+        <p>{{ storytelling.moth.blurb }}</p>
+      </div>
+
+      <div class="story-block">
+        <div class="story-head">
+          <span class="story-name">{{ storytelling.speaking.name }}</span>
+          <span class="story-kicker">{{ storytelling.speaking.kicker }}</span>
+        </div>
+
+        <div class="stat-row">
+{%- for s in storytelling.speaking.stats %}
+          <div class="stat-pair"><span class="cap">{{ s.cap }}</span><span class="num">{{ s.num }}</span></div>
+{%- endfor %}
+        </div>
+
+        <div class="skill-group" style="margin-bottom:0;">
+          <span class="cat">All engagements</span>
+          <div class="skill-list">
+{%- for e in storytelling.speaking.engagements %}
+            <span>{{ e.label }}{% if e.play %}<span class="mini-play" aria-hidden="true"><svg viewBox="0 0 10 10"><polygon points="0,0 10,5 0,10"/></svg></span>{% endif %}</span>
+{%- endfor %}
+          </div>
+        </div>
+      </div>
+
+      <p class="mantra">{{ storytelling.mantra }}</p>
+    </section>
+
+    <!-- ---------------- Career (disclosure ledger) ---------------- -->
     <section id="career" aria-label="Career history">
       <div class="section-head">
         <h2 class="section-title">Career</h2>
         <span class="hint">{{ career.hint }}</span>
       </div>
 
-      <div>
+      <div class="career-ledger">
 {%- for row in career.rows %}
-        <div class="career-row">
-          <div>
-            <div class="career-co">{{ row.company }}</div>
-            <div class="career-role">{{ row.role }}</div>
+        <details class="career-item">
+          <summary>
+            <span class="marker" aria-hidden="true">+</span>
+            <div>
+              <div class="career-co">{{ row.company }}{% if row.company_note %} <span class="career-conote">{{ row.company_note }}</span>{% endif %}</div>
+              <div class="career-role">{{ row.role }} · {{ row.location }}</div>
+            </div>
+            <div class="career-dates">{{ row.dates }}</div>
+          </summary>
+          <div class="career-body">
+            <ul class="career-bullets">
+{%- for b in row.bullets %}
+              <li>{{ b }}</li>
+{%- endfor %}
+            </ul>
+{%- if row.awards %}
+            <div class="career-awards"><b>Awards:</b> {{ row.awards | join(' · ') }}</div>
+{%- endif %}
           </div>
-          <div class="career-dates">{{ row.dates }}</div>
-          <p class="career-detail">{{ row.detail }}</p>
-        </div>
+        </details>
 {%- endfor %}
       </div>
     </section>
 
-    <!-- ---------------- Skills ---------------- -->
+    <!-- ---------------- Skills (Top-5 strip + chip groups) ---------------- -->
     <section id="skills" aria-label="Skills and stack">
       <div class="section-head">
         <h2 class="section-title">Skills</h2>
+        <span class="hint">top 5 · then full stack</span>
+      </div>
+
+      <div class="sig-skills">
+        <span class="cat">Signature strengths</span>
+{%- for s in signature_strengths %}
+        <div class="sig-row">
+          <span class="sig-name">{{ s.name }}</span>
+          <span class="sig-meter">
+{%- for i in range(1, 6) -%}
+{%- if i <= s.score | int %}<i class="on"></i>
+{%- elif (s.score - (s.score | int)) >= 0.5 and i == (s.score | int) + 1 %}<i class="half"></i>
+{%- else %}<i></i>
+{%- endif -%}
+{%- endfor %}
+</span>
+          <span class="sig-score">{{ "%.1f" | format(s.score) }}</span>
+        </div>
+{%- endfor %}
       </div>
 {%- for group in skills %}
 
@@ -227,9 +328,75 @@
       </div>
 {%- endfor %}
     </section>
+
+    <!-- ---------------- Credentials (education + certs + principles) ---------------- -->
+    <section id="credentials" aria-label="Education and certifications">
+      <div class="section-head">
+        <h2 class="section-title">Credentials</h2>
+        <span class="hint">degree · {{ cert_total }} certifications</span>
+      </div>
+{%- for edu in education %}
+
+      <div class="edu-row">
+        <div>
+          <div class="edu-co">{{ edu.school }}</div>
+          <div class="edu-deg">{{ edu.degree }}</div>
+        </div>
+        <div class="edu-loc">{{ edu.location }}</div>
+      </div>
+{%- endfor %}
+
+      <details class="certs">
+        <summary>
+          <span class="marker" aria-hidden="true">+</span>
+          <span class="certs-title">Certifications</span>
+          <span class="certs-count">{{ cert_total }} · {{ cert_issuers }} issuers</span>
+        </summary>
+        <div class="certs-body">
+{%- for group in certifications %}
+          <div class="cert-group">
+            <span class="issuer">{{ group.issuer }} · {{ group['items'] | length }}</span>
+            <div class="cert-list">
+              {% for item in group['items'] %}<span>{{ item }}</span>{% endfor %}
+            </div>
+          </div>
+{%- endfor %}
+        </div>
+      </details>
+{%- if principles %}
+
+      <details class="certs">
+        <summary>
+          <span class="marker" aria-hidden="true">+</span>
+          <span class="certs-title">Principles &amp; influences</span>
+          <span class="certs-count">values · books · quotes</span>
+        </summary>
+        <div class="principles-body">
+          <div class="prin-group">
+            <span class="plabel">Core values</span>
+            <div class="prin-values">{{ principles['values'] | join(' · ') }}</div>
+          </div>
+          <div class="prin-group">
+            <span class="plabel">Influential books</span>
+            <ul class="prin-books">
+{%- for book in principles.books %}
+              <li><b>{{ book.title }}</b> <span>{{ book.author }}</span></li>
+{%- endfor %}
+            </ul>
+          </div>
+          <div class="prin-group">
+            <span class="plabel">Words I keep close</span>
+{%- for q in principles.quotes %}
+            <p class="prin-quote">{{ q.text }}<cite>{{ q.cite }}</cite></p>
+{%- endfor %}
+          </div>
+        </div>
+      </details>
+{%- endif %}
+    </section>
 {%- if ship_log.enabled and ship_log.entries %}
 
-    <!-- ---------------- Shipping timeline (full) ---------------- -->
+    <!-- ---------------- Shipping log (full) ---------------- -->
     <section id="timeline" aria-label="Shipping timeline">
       <div class="section-head">
         <h2 class="section-title">Shipping log</h2>
@@ -248,7 +415,7 @@
 </div>
 
 <footer class="page-footer">
-  shanku.net/resume &middot; last updated {{ meta.last_updated }}
+  shanku.net/resume &middot; renders from resume.json &middot; last updated {{ meta.last_updated }}
 </footer>
 
 </body>

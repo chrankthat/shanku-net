@@ -128,7 +128,102 @@ def gate_rail_ceiling(data):
     if len(motto) > 40:
         print(f"Rail ceiling gate FAILED: motto is {len(motto)} chars (max 40).", file=sys.stderr)
         ok = False
+    # AC-3: the contact block is designed for exactly 3 rows (email/phone/linkedin).
+    # A sweep never touches contact, but assert the designed shape so the rail math
+    # the design was verified against cannot silently drift.
+    contact = data["contact"]
+    for field in ("email", "phone", "linkedin"):
+        if not contact.get(field):
+            print(f"Rail ceiling gate FAILED: contact.{field} is empty; the rail contact block "
+                  "is designed for exactly 3 rows (email, phone, linkedin).", file=sys.stderr)
+            ok = False
     return ok
+
+
+def gate_content(data, rendered_html):
+    """Content-completeness gates (dynamic-resume-v2, EC-2..EC-6).
+
+    v1 shipped 28 green ECs with placeholder-depth content: 2 career roles,
+    one-line venture bodies, no education/certs/storytelling. Chris rejected
+    it as junior-analyst weak. These predicates make "countable but thin"
+    fail loud - a gate must prove real depth, not mere non-emptiness.
+    """
+    ok = True
+
+    # EC-2: 6 career roles; recency-weighted bullets; every bullet >= 60 chars.
+    rows = data["career"]["rows"]
+    if len(rows) != 6:
+        print(f"Content gate FAILED: career has {len(rows)} rows (expected exactly 6). "
+              "The real resume is 16 years / 6 roles - the v1 miss was 2 roles.", file=sys.stderr)
+        ok = False
+    for idx, r in enumerate(rows):
+        need = 3 if idx < 3 else 2  # 3 most-recent roles fuller; condensed roles >= 2
+        nb = len(r.get("bullets", []))
+        if nb < need:
+            print(f"Content gate FAILED: career[{idx}] {r.get('company')!r} has {nb} bullets "
+                  f"(needs >= {need}; 'non-empty' alone was gameable by one 4-word bullet).", file=sys.stderr)
+            ok = False
+        for b in r.get("bullets", []):
+            if len(b) < 60:
+                print(f"Content gate FAILED: career[{idx}] {r.get('company')!r} bullet is "
+                      f"{len(b)} chars (min 60): {b!r}", file=sys.stderr)
+                ok = False
+
+    # EC-3: education, certifications, storytelling non-empty.
+    if not data.get("education"):
+        print("Content gate FAILED: education is empty.", file=sys.stderr)
+        ok = False
+    if not data.get("certifications"):
+        print("Content gate FAILED: certifications is empty.", file=sys.stderr)
+        ok = False
+    st = data.get("storytelling") or {}
+    if not (st.get("moth") and st.get("speaking") and st.get("mantra")):
+        print("Content gate FAILED: storytelling must carry moth + speaking + mantra.", file=sys.stderr)
+        ok = False
+
+    # EC-4: every venture body is a real paragraph (>= 200 chars), not an inherited one-liner.
+    for v in data["ventures"]:
+        body = v.get("body", "")
+        if len(body) < 200:
+            print(f"Content gate FAILED: venture {v.get('name')!r} body is {len(body)} chars "
+                  "(min 200). The v1 failure was one-line placeholder bodies ported as the contract.", file=sys.stderr)
+            ok = False
+
+    # ship_log enabled in v2 (entries arrive via the sweep/publisher).
+    if not data["ship_log"].get("enabled"):
+        print("Content gate FAILED: ship_log.enabled must be true in v2.", file=sys.stderr)
+        ok = False
+
+    # EC-5: contact email/phone/linkedin actually rendered into the page HTML,
+    # not just present in resume.json (the v1 gap - contact never rendered on-page).
+    if rendered_html is not None:
+        for token in (data["contact"]["email"], data["contact"]["phone"], "linkedin"):
+            if token not in rendered_html:
+                print(f"Content gate FAILED: contact token {token!r} not found in rendered index.html.", file=sys.stderr)
+                ok = False
+
+    return ok
+
+
+def _tel_href(phone):
+    digits = "".join(c for c in phone if c.isdigit())
+    return f"+1{digits}" if digits else ""
+
+
+def _sparkline_points(entries):
+    """Compressed echo of the ship log for the rail sparkline. Shape derives
+    from entry count: oldest (left, low) -> newest (right, high)."""
+    n = len(entries)
+    if n == 0:
+        return ""
+    if n == 1:
+        return "200,4"
+    pts = []
+    for i in range(n):
+        x = round(200 * i / (n - 1))
+        y = round(26 - 22 * i / (n - 1))
+        pts.append(f"{x},{y}")
+    return " ".join(pts)
 
 
 def gate_schema(data):
@@ -155,7 +250,15 @@ def render(data, source_sha):
         autoescape=select_autoescape(default=True, default_for_string=True),
         keep_trailing_newline=True,
     )
-    ctx = dict(data, source_sha=source_sha)
+    certs = data.get("certifications", [])
+    ctx = dict(
+        data,
+        source_sha=source_sha,
+        tel_href=_tel_href(data["contact"]["phone"]),
+        sparkline_points=_sparkline_points(data["ship_log"]["entries"]),
+        cert_total=sum(len(g["items"]) for g in certs),
+        cert_issuers=len(certs),
+    )
     page_html = env.get_template("page.html.j2").render(**ctx)
     pdf_html = env.get_template("pdf.html.j2").render(**ctx)
     return page_html, pdf_html
@@ -209,6 +312,8 @@ def main():
     page_html, pdf_html = render(data, source_sha)
 
     if not gate_voice(data, rendered_html=page_html):
+        return 1
+    if not gate_content(data, rendered_html=page_html):
         return 1
 
     html_path = ROOT / "index.html"
