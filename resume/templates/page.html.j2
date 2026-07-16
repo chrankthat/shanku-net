@@ -136,8 +136,10 @@
               <span class="venture-name">{{ v.name }}</span>
               <span class="venture-tag">{{ v.tag }}</span>
             </span>
-{%- if v.signal.type == 'count' %}
+{%- if v.signal.type == 'count' and v.signal.display == 'ledger' %}
             <span class="venture-meta is-total"><small>{{ v.signal.caption }}</small>{{ v.signal.value }}</span>
+{%- elif v.signal.type == 'count' %}
+            <span class="venture-meta">{{ v.signal.value }} {{ v.signal.caption }}</span>
 {%- else %}
             <span class="venture-meta">{{ v.signal.value }}</span>
 {%- endif %}

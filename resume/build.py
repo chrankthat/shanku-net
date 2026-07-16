@@ -103,14 +103,16 @@ def gate_ledger(data):
               "The 16 is a hand-curated editorial roster - see TheGrove wiki/decisions/ad192.md. "
               "Do not automate it. Do not 'correct' it to 17.", file=sys.stderr)
         return False
-    count_signals = [v for v in data["ventures"] if v["signal"]["type"] == "count"]
-    for v in count_signals:
-        if v["signal"]["value"] != ledger["count"]:
-            print(f"Ledger gate FAILED: venture '{v['name']}' signal value {v['signal']['value']} "
-                  f"!= ledger.tools_built.count {ledger['count']}.", file=sys.stderr)
-            return False
-    if not count_signals:
-        print("Ledger gate FAILED: no venture carries a count signal; the iLink Tools ledger total is a design requirement.", file=sys.stderr)
+    # Only the iLink Tools venture is bound to the tools ledger. Other
+    # ventures may carry their own count signals (e.g. HITL episode count).
+    ilink = [v for v in data["ventures"] if v["name"] == "iLink Tools"]
+    if not ilink:
+        print("Ledger gate FAILED: no 'iLink Tools' venture found; its ledger total is a design requirement.", file=sys.stderr)
+        return False
+    signal = ilink[0]["signal"]
+    if signal["type"] != "count" or signal["value"] != ledger["count"]:
+        print(f"Ledger gate FAILED: iLink Tools signal {signal!r} does not carry "
+              f"ledger.tools_built.count {ledger['count']}.", file=sys.stderr)
         return False
     return True
 

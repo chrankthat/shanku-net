@@ -107,11 +107,12 @@
               {
                 "type": "object",
                 "additionalProperties": false,
-                "required": ["type", "value", "caption"],
+                "required": ["type", "value", "caption", "display"],
                 "properties": {
                   "type": { "const": "count" },
                   "value": { "type": "integer" },
-                  "caption": { "type": "string" }
+                  "caption": { "type": "string" },
+                  "display": { "enum": ["ledger", "inline"], "description": "ledger = the stacked two-line total (unique to iLink Tools by design, Case B); inline = single-line 'N caption' in the same grammar as a date." }
                 }
               },
               {
