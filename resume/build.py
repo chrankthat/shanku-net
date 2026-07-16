@@ -135,8 +135,11 @@ def gate_schema(data):
     try:
         import jsonschema
     except ImportError:
-        print("note: jsonschema not installed; schema validation skipped", file=sys.stderr)
-        return True
+        print("Schema gate FAILED: jsonschema is not installed, so resume.schema.json "
+              "cannot be enforced. Its whole purpose is making Sprint 2 typos fail loud; "
+              "a silent skip here is the 'system that lies' pattern. "
+              "Install it: pip3 install jsonschema", file=sys.stderr)
+        return False
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
     try:
         jsonschema.validate(data, schema)

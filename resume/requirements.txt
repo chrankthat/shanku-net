@@ -1,4 +1,7 @@
-# resume/build.py + verify.py dependencies (both already on Trunk)
+# resume/build.py + verify.py dependencies
 jinja2>=3.1
 playwright>=1.40
-# optional: jsonschema (build.py validates resume.json against resume.schema.json when present)
+jsonschema>=4.0
+# verify.py's mobile leg additionally needs Docker with the
+# mcr.microsoft.com/playwright/python:v1.58.0-noble image cached when local
+# webkit cannot launch (it hangs in the NSApp event loop on macOS 26 over SSH).
