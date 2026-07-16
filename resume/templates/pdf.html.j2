@@ -4,109 +4,128 @@
 <meta charset="UTF-8">
 <title>{{ identity.name }} - Resume</title>
 <style>
-  /* ATS rules: single column, no tables, no images, no icons,
-     black on white, system Helvetica/Arial only. Brand fonts are
-     deliberately absent - Google Fonts in a print render would make
-     the build network-dependent and nondeterministic.
-     v2: full-classic - 6 roles with bullets, education, certifications. */
+  /* v2.1: styled to match the source resume at resume.shanku.net (the Google Doc):
+     centered name, teal section headers with a rule, blue role + link lines, italic
+     location/date lines, single column. Still ATS-parseable - real text, no tables,
+     no images, system Helvetica/Arial only (brand fonts would make the print render
+     network-dependent and nondeterministic). Color is fine for ATS text extraction. */
+  :root{
+    --ink:#1a1a1a;
+    --teal:#2E7060;   /* section headers - matches the source doc */
+    --blue:#2557A7;   /* role lines + links - matches the source doc */
+    --grey:#666;
+  }
   body{
     font-family: Helvetica, Arial, sans-serif;
-    color:#000; background:#fff;
-    font-size:10.5pt; line-height:1.4;
+    color:var(--ink); background:#fff;
+    font-size:10pt; line-height:1.4;
     margin:0;
   }
-  h1{ font-size:17pt; margin:0 0 2pt; letter-spacing:.02em; }
-  .contact{ font-size:9.5pt; margin:0 0 12pt; color:#000; }
-  /* No text-transform / letter-spacing on headings: spaced glyphs extract
-     as "S U M M A RY" in pdftotext and real ATS parsers choke the same way. */
-  h2{
-    font-size:10.5pt; font-weight:bold;
-    border-bottom:1pt solid #000; padding-bottom:2pt; margin:13pt 0 6pt;
+  a{ color:var(--blue); text-decoration:none; }
+
+  .name{
+    text-align:center; font-size:20pt; font-weight:bold; letter-spacing:.06em;
+    margin:0 0 3pt; color:var(--ink);
   }
-  p{ margin:0 0 5pt; }
-  .role{ margin:0 0 9pt; }
-  .role-head{ font-weight:bold; margin:0 0 1pt; }
-  .role-sub{ font-size:9.5pt; margin:0 0 3pt; }
-  .dates{ font-weight:normal; }
-  ul{ margin:2pt 0 0; padding-left:16pt; }
-  li{ margin:0 0 2pt; }
+  .contact-line{
+    text-align:center; font-size:9.5pt; color:var(--grey); margin:0 0 4pt;
+  }
+  .contact-line a{ color:var(--blue); }
+
+  h2{
+    color:var(--teal); font-size:12pt; font-weight:bold; letter-spacing:.03em;
+    border-bottom:1pt solid var(--teal); padding-bottom:2pt; margin:14pt 0 7pt;
+  }
+
+  p{ margin:0 0 6pt; }
+  .summary p{ margin:0 0 7pt; }
+
+  .role{ margin:0 0 10pt; }
+  .company{ font-weight:bold; font-size:10.5pt; color:var(--ink); margin:0; }
+  .title{ color:var(--blue); font-weight:bold; font-size:10pt; margin:1pt 0 0; }
+  .meta{ font-style:italic; color:var(--grey); font-size:9.5pt; margin:0 0 2pt; }
+  ul{ margin:3pt 0 0; padding-left:15pt; }
+  li{ margin:0 0 2.5pt; }
   .awards{ font-size:9pt; margin:3pt 0 0; }
+  .awards b{ color:var(--ink); }
+
+  .proj{ margin:0 0 7pt; }
+  .proj-name{ font-weight:bold; color:var(--ink); }
+  .muted{ color:var(--grey); font-size:9.5pt; }
   .edu-line{ margin:0 0 4pt; }
-  .certs-line{ margin:0 0 3pt; }
+  .cert-line{ margin:0 0 3pt; }
   .skills p{ margin:0 0 3pt; }
-  .venture{ margin:0 0 7pt; }
-  .venture-head{ font-weight:bold; }
-  .muted-line{ font-size:9.5pt; }
-  .foot{ font-size:8.5pt; margin-top:14pt; color:#000; }
 </style>
 </head>
 <body>
 
-  <h1>{{ identity.name }}</h1>
-  <p class="contact">
-    {{ contact.location }} &middot; {{ contact.email }}{% if contact.phone %} &middot; {{ contact.phone }}{% endif %} &middot; {{ contact.website }}{% if contact.linkedin_display %} &middot; {{ contact.linkedin_display }}{% endif %}
+  <p class="name">{{ identity.name | upper }}</p>
+  <p class="contact-line">
+    <a href="mailto:{{ contact.email }}">{{ contact.email }}</a> |
+    <a href="https://{{ contact.website }}">{{ contact.website }}</a> |
+    <a href="{{ contact.linkedin }}">{{ contact.linkedin_display }}</a> |
+    +1 {{ contact.phone }}
   </p>
 
   <h2>Summary</h2>
-  <p>{{ identity.oneliner }}</p>
+  <div class="summary">
+{%- for para in summary %}
+    <p>{{ para }}</p>
+{%- endfor %}
+  </div>
 
-  <h2>Experience</h2>
+  <h2>Professional Experience</h2>
 {%- for row in career.rows %}
   <div class="role">
-    <p class="role-head">{{ row.role }}, {{ row.company }}{% if row.company_note %} {{ row.company_note }}{% endif %} <span class="dates">({{ row.dates }})</span></p>
-    <p class="role-sub">{{ row.location }}</p>
+    <p class="company">{{ row.company }}{% if row.company_note %} {{ row.company_note }}{% endif %}</p>
+    <p class="title">{{ row.role }}</p>
+    <p class="meta">{{ row.location }} | {{ row.dates }}</p>
     <ul>
 {%- for b in row.bullets %}
       <li>{{ b }}</li>
 {%- endfor %}
     </ul>
 {%- if row.awards %}
-    <p class="awards"><strong>Awards:</strong> {{ row.awards | join(' · ') }}</p>
+    <p class="awards"><b>Awards:</b> {{ row.awards | join(' · ') }}</p>
 {%- endif %}
   </div>
 {%- endfor %}
-
-  <h2>Education</h2>
-{%- for edu in education %}
-  <p class="edu-line"><strong>{{ edu.school }}</strong> - {{ edu.degree }} ({{ edu.location }})</p>
-{%- endfor %}
-
-  <h2>Certifications</h2>
-{%- for group in certifications %}
-  <p class="certs-line"><strong>{{ group.issuer }}:</strong> {{ group['items'] | join(', ') }}</p>
-{%- endfor %}
-
-  <h2>Skills</h2>
-  <div class="skills">
-{%- for group in skills %}
-    <p><strong>{{ group.category }}:</strong> {{ group['items'] | join(', ') }}</p>
-{%- endfor %}
-  </div>
 
   <h2>AI Portfolio</h2>
 {%- for v in ventures %}
-  <div class="venture">
-    <p class="venture-head">{{ v.name }} <span class="dates">({{ v.tag }})</span></p>
-    <p>{{ v.body }}</p>
-{%- if v.signal.type == 'count' %}
-    <p class="muted-line">{{ v.signal.value }} {{ v.signal.caption | lower }}.{% if v.field.kind == 'link' %} {{ v.field.label }}{% endif %}</p>
-{%- elif v.field.kind == 'link' %}
-    <p class="muted-line">{{ v.field.label }}</p>
-{%- else %}
-    <p class="muted-line">Status: private beta.</p>
-{%- endif %}
+  <div class="proj">
+    <p><span class="proj-name">{{ v.name }}</span> <span class="muted">- {{ v.tag }}</span></p>
+    <p>{{ v.body }}
+{%- if v.signal.type == 'count' %} <span class="muted">{{ v.signal.value }} {{ v.signal.caption | lower }}.</span>{% endif %}
+{%- if v.field.kind == 'link' %} <a href="{{ v.field.href }}">{{ v.field.label }}</a>
+{%- else %} <span class="muted">{{ v.field.label | replace('[', '') | replace(']', '') }}.</span>{% endif %}</p>
 {%- if v.thesis %}
-    <p class="muted-line">{{ v.thesis }}</p>
+    <p class="muted">{{ v.thesis }}</p>
 {%- endif %}
   </div>
 {%- endfor %}
 
-  <h2>Storytelling &amp; Speaking</h2>
+  <h2>Storytelling &amp; Community</h2>
   <p>{{ storytelling.moth.blurb }}</p>
-  <p class="muted-line">The Moth: {% for w in storytelling.moth.wins %}{{ w.event }} ({{ w.title }}, {{ w.date }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>
-  <p class="muted-line">Speaking: {% for s in storytelling.speaking.stats %}{{ s.num }} {{ s.cap | lower }}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+  <p class="muted">The Moth: {% for w in storytelling.moth.wins %}{{ w.event }} ("{{ w.title }}", {{ w.date }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>
+  <p class="muted">Speaking &amp; Mentoring: {% for s in storytelling.speaking.stats %}{{ s.num }} {{ s.cap | lower }}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
 
-  <p class="foot">Updated {{ meta.last_updated }} &middot; {{ meta.canonical_url }}</p>
+  <h2>Certifications</h2>
+{%- for group in certifications %}
+  <p class="cert-line"><b>{{ group.issuer }}:</b> {{ group['items'] | join(', ') }}</p>
+{%- endfor %}
+
+  <h2>Technical Skills</h2>
+  <div class="skills">
+{%- for group in skills %}
+    <p><b>{{ group.category }}:</b> {{ group['items'] | join(', ') }}</p>
+{%- endfor %}
+  </div>
+
+  <h2>Education</h2>
+{%- for edu in education %}
+  <p class="edu-line"><b>{{ edu.school }}</b> - {{ edu.degree }} ({{ edu.location }})</p>
+{%- endfor %}
 
 </body>
 </html>

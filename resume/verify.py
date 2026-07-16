@@ -226,10 +226,12 @@ def pdf_gates():
         ["pdftotext", "-layout", str(PDF_PATH), "-"], capture_output=True, text=True, check=True
     ).stdout
 
+    # Case-insensitive: the PDF header renders the name uppercase (CHRIS J SHANKU)
+    # to match the source doc; the ATS-relevant fact is the text is present.
     for needle in ["Chris J Shanku", "Microsoft", "iLink", "Valorem", "Avanade",
                    "University of Georgia", "WayFact", "16", "private beta",
                    "SignalScope graduated into WayFact."]:
-        check(f"pdf: contains {needle!r}", needle in text)
+        check(f"pdf: contains {needle!r}", needle.lower() in text.lower())
     check("pdf: does NOT contain bracketed '[private beta]'", "[private beta]" not in text)
     check(
         "pdf: 'Experience' appears before 'AI Portfolio' (ATS DOM order)",

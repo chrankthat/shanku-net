@@ -5,8 +5,14 @@
   "description": "Source of truth for /resume/. build.py renders index.html + the ATS PDF from this file. additionalProperties is false everywhere so a typo fails loud instead of rendering wrong. v2 (dynamic-resume-v2): grown to full content depth - 6-role career ledger with bullets, education, certifications, storytelling, signature strengths, real venture bodies, enabled ship log.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["meta", "identity", "contact", "credentials", "ventures", "storytelling", "career", "signature_strengths", "skills", "education", "certifications", "ship_log", "ledger"],
+  "required": ["meta", "identity", "summary", "contact", "credentials", "ventures", "storytelling", "career", "signature_strengths", "skills", "education", "certifications", "ship_log", "ledger"],
   "properties": {
+    "summary": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Professional summary paragraphs, verbatim from the source resume (resume.shanku.net). Rendered as the PDF's Summary section. The site rail uses identity.oneliner (the punchy tagline) instead.",
+      "items": { "type": "string" }
+    },
     "meta": {
       "type": "object",
       "additionalProperties": false,

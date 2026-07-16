@@ -169,6 +169,11 @@ def gate_content(data, rendered_html):
                       f"{len(b)} chars (min 60): {b!r}", file=sys.stderr)
                 ok = False
 
+    # Professional summary present (sourced from resume.shanku.net; renders in the PDF).
+    if not data.get("summary"):
+        print("Content gate FAILED: summary is empty.", file=sys.stderr)
+        ok = False
+
     # EC-3: education, certifications, storytelling non-empty.
     if not data.get("education"):
         print("Content gate FAILED: education is empty.", file=sys.stderr)

@@ -69,7 +69,7 @@
     <div class="row"><span class="label">{{ cred.label }}</span><span class="value">{{ cred.value }}</span></div>
 {%- endfor %}
   </div>
-  <a class="btn-download" href="/resume/{{ meta.pdf_filename }}" download aria-label="Download resume PDF">
+  <a class="btn-download" href="/resume/{{ meta.pdf_filename }}" target="_blank" rel="noopener" aria-label="Open resume PDF in a new tab">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 21h16"/></svg>
     Download resume (PDF)
   </a>
@@ -108,7 +108,7 @@
 {%- endfor %}
     </div>
 
-    <a class="btn-download" href="/resume/{{ meta.pdf_filename }}" download aria-label="Download resume PDF">
+    <a class="btn-download" href="/resume/{{ meta.pdf_filename }}" target="_blank" rel="noopener" aria-label="Open resume PDF in a new tab">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 21h16"/></svg>
       Download resume (PDF)
     </a>
