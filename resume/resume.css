@@ -395,15 +395,15 @@ details.career-item[open] .marker{ transform:rotate(45deg); background:var(--acc
   content:"\2014"; position:absolute; left:0; color:var(--accent); font-family:var(--font-mono);
 }
 /* ---------- Career bullet tags ("AI for X" metadata pills) ----------
-   Muted metadata chip, deliberately NOT gold: the li::before marker already
-   spends the accent in this line; the pill reads as a filed tag. */
+   Gold text + border per Chris (2026-07-17), overriding the designer's
+   muted-chip recommendation - operator call on his own page. */
 .b-tag{
   display:inline-flex; align-items:center; vertical-align:middle;
   margin-left:.45rem;
   font-family:var(--font-mono); font-size:.66rem; font-weight:500;
   letter-spacing:.06em; text-transform:uppercase;
-  color:var(--text-muted); white-space:nowrap;
-  border:1px solid var(--card-border); border-radius:4px;
+  color:var(--accent); white-space:nowrap;
+  border:1px solid var(--accent); border-radius:4px;
   padding:.15rem .45rem; line-height:1.4;
 }
 .career-awards{

@@ -238,7 +238,7 @@
     "rows": [
       {
         "company": "iLink Digital",
-        "role": "Senior Director, US Financial Services Practice",
+        "role": "Senior Director, AI + US Financial Services Practice Lead",
         "location": "Atlanta, GA",
         "dates": "2025 - present",
         "bullets": [
@@ -343,20 +343,20 @@
       "score": 5.0
     },
     {
+      "name": "Agentic Systems",
+      "score": 4.5
+    },
+    {
+      "name": "Multi-Agent Architecture",
+      "score": 4.5
+    },
+    {
+      "name": "Responsible AI",
+      "score": 4.5
+    },
+    {
       "name": "Public Speaking",
       "score": 4.5
-    },
-    {
-      "name": "CxO Presence",
-      "score": 4.5
-    },
-    {
-      "name": "Data Strategy",
-      "score": 4.5
-    },
-    {
-      "name": "AI Strategy",
-      "score": 4.0
     }
   ],
   "skills": [
@@ -377,7 +377,13 @@
         "LangChain",
         "pgvector",
         "RAG architectures",
-        "AI agent frameworks"
+        "AI agent frameworks",
+        "Agent-to-Agent",
+        "Agentic Systems",
+        "AI-Native SDLC",
+        "Loop Engineering",
+        "Harness Engineering",
+        "Context Engineering"
       ]
     },
     {
