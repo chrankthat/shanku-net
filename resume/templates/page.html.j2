@@ -29,9 +29,7 @@
 <link rel="icon" href="/images/CJS-logo-round.png" type="image/png">
 <link rel="apple-touch-icon" href="/images/CJS-logo-round.png">
 <link rel="stylesheet" href="../css/tokens.css">
-<link rel="stylesheet" href="resume.css">
-<script src="resume.js" defer></script>
-</head>
+<link rel="stylesheet" href="resume.css"></head>
 {%- macro contact_block() %}
   <div class="contact">
     <span class="cap">Contact</span>
@@ -173,15 +171,17 @@
 {%- for ex in v.exemplars %}
 
               <div class="exemplar">
-                <div class="facade" tabindex="0" role="button"
-                     aria-label="Play {{ ex.name }} demo video"
-                     data-embed="{{ ex.embed }}">
+                <a class="facade" href="https://www.youtube.com/watch?v={{ ex.embed.split('/')[-1] }}"
+                   target="_blank" rel="noopener"
+                   aria-label="Watch {{ ex.name }} demo on YouTube">
+                  <img src="https://img.youtube.com/vi/{{ ex.embed.split('/')[-1] }}/hqdefault.jpg"
+                       alt="" loading="lazy" width="480" height="360">
                   <span class="mono-mark">{{ ex.mark }}</span>
                   <span class="play"><span><svg viewBox="0 0 10 10"><polygon points="0,0 10,5 0,10"/></svg></span></span>
 {%- if ex.duration %}
                   <span class="dur">{{ ex.duration }}</span>
 {%- endif %}
-                </div>
+                </a>
                 <div class="exemplar-body">
                   <div class="head">
                     <span class="exemplar-name">{{ ex.name }}</span>

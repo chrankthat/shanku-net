@@ -298,7 +298,12 @@ a.venture-field:hover{ color:var(--accent); border-color:var(--accent); }
   position:absolute; right:5px; bottom:5px; font-family:var(--font-mono); font-size:.66rem;
   color:var(--text-muted); background:rgba(13,31,28,.7); padding:1px 4px; border-radius:2px;
 }
-.facade iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+/* Thumbnail fills the 16/9 facade box (source is 480x360, so crop, don't
+   letterbox). The img is absolutely positioned, so the static .mono-mark
+   needs position:relative to keep painting above it; .play and .dur are
+   already positioned and later in DOM order, so they stay on top. */
+.facade img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.facade .mono-mark{ position:relative; }
 
 .exemplar-body .head{ display:flex; flex-wrap:wrap; align-items:baseline; gap:.5rem; }
 .exemplar-name{ font-family:var(--font-mono); font-weight:600; font-size:.88rem; color:var(--text); }
