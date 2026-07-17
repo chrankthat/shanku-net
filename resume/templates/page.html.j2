@@ -47,6 +47,33 @@
     </a>
   </div>
 {%- endmacro %}
+{%- macro links_block() %}
+  <details class="links-group">
+    <summary>
+      <span class="marker" aria-hidden="true">+</span>
+      <span class="links-title">Links</span>
+      <span class="links-count">4</span>
+    </summary>
+    <div class="links-body">
+      <a href="https://calendar.shanku.net" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/></svg>
+        <span class="c-val">calendar.shanku.net</span>
+      </a>
+      <a href="https://{{ contact.website }}" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        <span class="c-val">{{ contact.website }}</span>
+      </a>
+      <a href="https://thegrove.llc" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect x="2" y="6" width="20" height="14" rx="2"/></svg>
+        <span class="c-val">thegrove.llc</span>
+      </a>
+      <a href="https://humanintheloop.stream" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"/><path d="M19.075 4.933a10 10 0 0 1 0 14.134"/><path d="M4.925 19.067a10 10 0 0 1 0-14.134"/><path d="M7.753 16.239a6 6 0 0 1 0-8.478"/><circle cx="12" cy="12" r="2"/></svg>
+        <span class="c-val">humanintheloop.stream</span>
+      </a>
+    </div>
+  </details>
+{%- endmacro %}
 <body>
 
 <a href="#main" class="skip-link">Skip to content</a>
@@ -72,6 +99,7 @@
     Download resume (PDF)
   </a>
 {{ contact_block() }}
+{{ links_block() }}
 </div>
 
 <!-- ============================================================
@@ -126,6 +154,11 @@
       <div class="sparkline-foot"><span>{{ ship_log.entries[-1].date[:4] }}</span><span>last: {{ ship_log.entries[0].date }}</span></div>
     </div>
 {%- endif %}
+    <!-- Links sit BELOW the sparkline in the rail: the sparkline-above-fold
+         budget is binding; a collapsed secondary block may overflow, the
+         sparkline may not. Mobile renders links right after contact instead
+         (no fold constraint there). -->
+{{ links_block() }}
   </aside>
 
   <!-- ============================================================
@@ -285,7 +318,11 @@
           <div class="career-body">
             <ul class="career-bullets">
 {%- for b in row.bullets %}
+{%- if b is mapping %}
+              <li>{{ b.text }}{% if b.tag %} <span class="b-tag">{{ b.tag }}</span>{% endif %}</li>
+{%- else %}
               <li>{{ b }}</li>
+{%- endif %}
 {%- endfor %}
             </ul>
 {%- if row.awards %}

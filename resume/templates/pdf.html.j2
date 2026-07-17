@@ -82,7 +82,11 @@
     <p class="meta">{{ row.location }} | {{ row.dates }}</p>
     <ul>
 {%- for b in row.bullets %}
+{%- if b is mapping %}
+      <li>{{ b.text }}{% if b.tag %} <span class="muted">({{ b.tag }})</span>{% endif %}</li>
+{%- else %}
       <li>{{ b }}</li>
+{%- endif %}
 {%- endfor %}
     </ul>
 {%- if row.awards %}

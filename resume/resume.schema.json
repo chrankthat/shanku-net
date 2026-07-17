@@ -246,7 +246,24 @@
               "role": { "type": "string" },
               "location": { "type": "string" },
               "dates": { "type": "string" },
-              "bullets": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+              "bullets": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "oneOf": [
+                    { "type": "string" },
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": ["text"],
+                      "properties": {
+                        "text": { "type": "string" },
+                        "tag": { "type": "string", "description": "Optional metadata pill rendered at the end of the bullet (e.g. 'AI for Ops'). Muted chip on the page, '(tag)' parenthetical in the PDF." }
+                      }
+                    }
+                  ]
+                }
+              },
               "awards": { "type": "array", "items": { "type": "string" } }
             }
           }

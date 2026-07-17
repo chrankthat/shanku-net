@@ -164,9 +164,12 @@ def gate_content(data, rendered_html):
                   f"(needs >= {need}; 'non-empty' alone was gameable by one 4-word bullet).", file=sys.stderr)
             ok = False
         for b in r.get("bullets", []):
-            if len(b) < 60:
+            # Bullets are strings or {text, tag} objects (v3 pills); the length
+            # floor applies to the bullet text, never the tag.
+            text = b["text"] if isinstance(b, dict) else b
+            if len(text) < 60:
                 print(f"Content gate FAILED: career[{idx}] {r.get('company')!r} bullet is "
-                      f"{len(b)} chars (min 60): {b!r}", file=sys.stderr)
+                      f"{len(text)} chars (min 60): {text!r}", file=sys.stderr)
                 ok = False
 
     # Professional summary present (sourced from resume.shanku.net; renders in the PDF).
