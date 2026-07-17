@@ -119,9 +119,13 @@ summary{ list-style:none; }
   border-left:1px solid var(--card-border); padding-left:.6rem; margin-left:.1rem;
 }
 
-/* Avatar (shared: real image with a graceful CSS fallback) */
+/* Avatar (shared: real image with a graceful CSS fallback). Fully round:
+   the photo asset is a circle with transparent corners, so a rounded-square
+   container paints a visible card behind it (Chris flagged on mobile,
+   2026-07-17). border-radius:50% keeps gradient+border exactly under the
+   circle - nothing renders outside it. */
 .avatar{
-  position:relative; border-radius:6px; overflow:hidden; flex:none;
+  position:relative; border-radius:50%; overflow:hidden; flex:none;
   background:linear-gradient(155deg,#1A4A44 0%, var(--surface) 55%, var(--card-bg) 100%);
   border:1px solid var(--card-border);
 }
