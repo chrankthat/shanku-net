@@ -207,6 +207,15 @@ def js_off_gates(p):
 
     check(".thesis has zero matches (block removed)", page.locator(".thesis").count() == 0)
 
+    # AI-production disclosure renders as a lead-in BEFORE the demo cards.
+    disclosure = next(v["ai_disclosure"] for v in DATA["ventures"] if v.get("ai_disclosure"))
+    check("js-off: .ai-disclosure text in DOM source", disclosure in content)
+    check(
+        "js-off: .ai-disclosure precedes the exemplars block",
+        page.locator(".ai-disclosure").count() == 1
+        and content.index(disclosure) < content.index('class="exemplars"'),
+    )
+
     browser.close()
 
 

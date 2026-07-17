@@ -312,6 +312,14 @@ a.venture-field:hover{ color:var(--accent); border-color:var(--accent); }
 .exemplar-url:hover{ color:var(--accent); border-color:var(--accent); }
 .exemplar-body p{ margin:.3rem 0 0; font-size:.84rem; color:var(--text-muted); max-width:34rem; }
 
+/* ---------- AI-production disclosure (lead-in above the demo cards) ----------
+   Deliberately lighter than the retired .thesis treatment: this is a lead-in,
+   not a closing statement - muted small text with a thin top rule. */
+.ai-disclosure{
+  margin:1.1rem 0 0; padding-top:.7rem; border-top:1px solid var(--rule);
+  font-size:.8rem; color:var(--text-muted); max-width:40rem; font-style:italic;
+}
+
 /* ---------- Storytelling ---------- */
 .story-block{ padding:1rem 0; border-bottom:1px solid var(--rule); }
 .story-block:first-child{ border-top:1px solid var(--rule); }

@@ -146,12 +146,13 @@
                 "href": { "type": "string", "format": "uri" },
                 "label": { "type": "string" },
                 "desc": { "type": "string" },
-                "embed": { "type": "string", "pattern": "^https://www\\.youtube-nocookie\\.com/embed/", "description": "nocookie only. The facade injects the iframe on click; never a raw iframe in the DOM." },
+                "embed": { "type": "string", "pattern": "^https://www\\.youtube-nocookie\\.com/embed/", "description": "Video id source. The facade renders a thumbnail link-out to the watch URL; never an iframe in the DOM." },
                 "duration": { "type": "string", "description": "Badge text like 1:56. Empty string omits the badge." }
               }
             }
           },
-          "thesis": { "type": "string", "description": "Optional closing ruled block at the end of a venture card. Currently unused." }
+          "thesis": { "type": "string", "description": "Optional closing ruled block at the end of a venture card. Currently unused." },
+          "ai_disclosure": { "type": "string", "description": "Optional lead-in line rendered above the exemplars block. For iLink Tools: discloses the demos are AI-produced (digital twin, cloned voice, agent screen capture, programmatic edit)." }
         }
       }
     },

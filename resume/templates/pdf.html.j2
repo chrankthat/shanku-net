@@ -99,6 +99,9 @@
 {%- if v.signal.type == 'count' %} <span class="muted">{{ v.signal.value }} {{ v.signal.caption | lower }}.</span>{% endif %}
 {%- if v.field.kind == 'link' %} <a href="{{ v.field.href }}">{{ v.field.label }}</a>
 {%- else %} <span class="muted">{{ v.field.label | replace('[', '') | replace(']', '') }}.</span>{% endif %}</p>
+{%- if v.ai_disclosure %}
+    <p class="muted">{{ v.ai_disclosure }}</p>
+{%- endif %}
 {%- if v.thesis %}
     <p class="muted">{{ v.thesis }}</p>
 {%- endif %}

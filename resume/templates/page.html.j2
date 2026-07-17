@@ -165,6 +165,9 @@
 {%- else %}
             <span class="venture-field">{{ v.field.label }}</span>
 {%- endif %}
+{%- if v.ai_disclosure %}
+            <p class="ai-disclosure">{{ v.ai_disclosure }}</p>
+{%- endif %}
 {%- if v.exemplars %}
 
             <div class="exemplars">
