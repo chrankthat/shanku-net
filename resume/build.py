@@ -202,10 +202,12 @@ def gate_content(data, rendered_html):
         print("Content gate FAILED: ship_log.enabled must be true in v2.", file=sys.stderr)
         ok = False
 
-    # EC-5: contact email/phone/linkedin actually rendered into the page HTML,
-    # not just present in resume.json (the v1 gap - contact never rendered on-page).
+    # EC-5: contact email/linkedin actually rendered into the page HTML, not
+    # just present in resume.json (the v1 gap - contact never rendered
+    # on-page). Phone dropped off the PAGE 2026-07-17 (Chris: too many rows);
+    # it still ships in resume.json and the ATS PDF header.
     if rendered_html is not None:
-        for token in (data["contact"]["email"], data["contact"]["phone"], "linkedin"):
+        for token in (data["contact"]["email"], "linkedin"):
             if token not in rendered_html:
                 print(f"Content gate FAILED: contact token {token!r} not found in rendered index.html.", file=sys.stderr)
                 ok = False

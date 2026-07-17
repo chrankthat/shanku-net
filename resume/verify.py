@@ -96,7 +96,9 @@ def desktop_gates(p):
     check("desktop: details.career-item count == 6", page.locator("details.career-item").count() == 6,
           f"got {page.locator('details.career-item').count()}")
     check("desktop: contact email link rendered on page", page.locator("a[href^='mailto:']").count() >= 1)
-    check("desktop: contact tel link rendered on page", page.locator("a[href^='tel:']").count() >= 1)
+    # Phone dropped off the page 2026-07-17 (PDF header keeps it) - assert the
+    # absence so it cannot silently creep back.
+    check("desktop: no tel link on page (phone is PDF-only)", page.locator("a[href^='tel:']").count() == 0)
     check("desktop: 3 Moth YouTube links", page.locator(".story-win .w-yt").count() == 3,
           f"got {page.locator('.story-win .w-yt').count()}")
     check("desktop: speaking statline present (4 stat pairs)", page.locator(".stat-row .stat-pair").count() == 4,
@@ -221,7 +223,14 @@ def js_off_gates(p):
     # (mobile identity + desktop rail), 7 rows each.
     check("js-off: 6 .b-tag career pills", page.locator(".b-tag").count() == 6)
     check("js-off: 0 .links-group accordions remain", page.locator(".links-group").count() == 0)
-    check("js-off: 14 .contact a anchors (7 rows x 2 call sites)", page.locator(".contact a").count() == 14)
+    check("js-off: 10 .contact a anchors (5 rows x 2 call sites)", page.locator(".contact a").count() == 10)
+    order = [page.locator(".rail .contact a .c-val").nth(i).text_content().strip() for i in range(5)]
+    check(
+        "js-off: rail contact order email, shanku.net, calendar, linkedin, thegrove.llc",
+        order == [DATA["contact"]["email"], DATA["contact"]["website"], "calendar.shanku.net",
+                  DATA["contact"]["linkedin_display"], "thegrove.llc"],
+        f"got {order}",
+    )
 
     browser.close()
 
