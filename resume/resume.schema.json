@@ -52,8 +52,8 @@
     },
     "credentials": {
       "type": "array",
-      "maxItems": 3,
-      "description": "Rail ceiling: build.py enforces <=3 rows. A fourth row changes the rail math the design was verified against.",
+      "maxItems": 4,
+      "description": "Rail ceiling: build.py enforces <=4 rows (raised 3->4 on 2026-07-17: iLink / ex-Microsoft / Total Experience / Location). A fifth row changes the rail math.",
       "items": {
         "type": "object",
         "additionalProperties": false,

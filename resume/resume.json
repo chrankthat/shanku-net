@@ -27,12 +27,16 @@
   },
   "credentials": [
     {
-      "label": "Microsoft",
+      "label": "iLink Digital",
+      "value": "Senior Director"
+    },
+    {
+      "label": "ex-Microsoft",
       "value": "8 years"
     },
     {
-      "label": "iLink Digital",
-      "value": "Senior Director"
+      "label": "Total Experience",
+      "value": "17 years"
     },
     {
       "label": "Location",

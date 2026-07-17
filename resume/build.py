@@ -121,9 +121,12 @@ def gate_rail_ceiling(data):
     ok = True
     creds = data["credentials"]
     motto = data["identity"]["motto"]
-    if len(creds) > 3:
-        print(f"Rail ceiling gate FAILED: {len(creds)} credential rows (max 3). "
-              "A fourth row changes the rail math the design was verified against.", file=sys.stderr)
+    # Max raised 3 -> 4 on 2026-07-17 (Chris: iLink / ex-Microsoft / Total
+    # Experience / Location). The original h=768 rail-fold math was already
+    # superseded by the 5-row contact block earlier the same day.
+    if len(creds) > 4:
+        print(f"Rail ceiling gate FAILED: {len(creds)} credential rows (max 4). "
+              "A fifth row changes the rail math the design was verified against.", file=sys.stderr)
         ok = False
     if len(motto) > 40:
         print(f"Rail ceiling gate FAILED: motto is {len(motto)} chars (max 40).", file=sys.stderr)
