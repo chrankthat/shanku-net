@@ -207,6 +207,10 @@ main{ padding:2rem 1.25rem 4rem; max-width:56rem; }
 section + section{ margin-top:2.75rem; }
 .section-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:1rem; gap:1rem; }
 .section-head .hint{ font-family:var(--font-mono); font-size:.68rem; color:var(--text-muted); white-space:nowrap; }
+/* Linux webkit (the containerized verify leg) renders the mono fallback a few
+   px wider than macOS; the longest hint overflows 375px by 3px. Let hints wrap
+   on narrow viewports instead of forcing horizontal scroll. */
+@media (max-width:480px){ .section-head .hint{ white-space:normal; text-align:right; } }
 
 /* ---------- Ventures ledger ---------- */
 .ledger{ border-top:1px solid var(--rule); }
