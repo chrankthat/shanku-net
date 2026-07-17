@@ -205,14 +205,7 @@ def js_off_gates(p):
     mantra = DATA["storytelling"]["mantra"]
     check("js-off: storytelling mantra in DOM source", mantra in content)
 
-    # text_content, not inner_text: .thesis sits inside a closed <details>,
-    # and inner_text of layout-hidden content is empty by spec.
-    thesis = page.locator(".thesis").text_content().strip()
-    check(
-        "js-off: .thesis == 'SignalScope graduated into WayFact.'",
-        thesis == "SignalScope graduated into WayFact.",
-        f"got {thesis!r}",
-    )
+    check(".thesis has zero matches (block removed)", page.locator(".thesis").count() == 0)
 
     browser.close()
 
@@ -229,8 +222,7 @@ def pdf_gates():
     # Case-insensitive: the PDF header renders the name uppercase (CHRIS J SHANKU)
     # to match the source doc; the ATS-relevant fact is the text is present.
     for needle in ["Chris J Shanku", "Microsoft", "iLink", "Valorem", "Avanade",
-                   "University of Georgia", "WayFact", "16", "private beta",
-                   "SignalScope graduated into WayFact."]:
+                   "University of Georgia", "WayFact", "16", "private beta"]:
         check(f"pdf: contains {needle!r}", needle.lower() in text.lower())
     check("pdf: does NOT contain bracketed '[private beta]'", "[private beta]" not in text)
     check(

@@ -151,7 +151,7 @@
               }
             }
           },
-          "thesis": { "type": "string", "description": "Closing ruled block. For iLink Tools: SignalScope graduated into WayFact." }
+          "thesis": { "type": "string", "description": "Optional closing ruled block at the end of a venture card. Currently unused." }
         }
       }
     },

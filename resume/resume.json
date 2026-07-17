@@ -113,8 +113,7 @@
           "embed": "https://www.youtube-nocookie.com/embed/jpEFXD0_gmg",
           "duration": "2:33"
         }
-      ],
-      "thesis": "SignalScope graduated into WayFact."
+      ]
     },
     {
       "name": "twelfth.help",
@@ -133,7 +132,7 @@
     {
       "name": "WayFact",
       "tag": "FSI data curation",
-      "body": "WayFact is an FSI data-curation engine that turns raw market signal into verified, decision-ready fact - the productized graduation of the SignalScope work I built inside iLink Tools. It runs as a standalone venture under TheGrove AI LLC, focused on the one thing regulated financial-services teams cannot outsource to a hallucinating model: knowing what is actually true.",
+      "body": "WayFact is an FSI data-curation engine that turns raw market signal into verified, decision-ready fact. It runs as a standalone venture under TheGrove AI LLC, focused on the one thing regulated financial-services teams cannot outsource to a hallucinating model: knowing what is actually true.",
       "field": {
         "kind": "status",
         "label": "[status: private beta]"
@@ -564,7 +563,7 @@
     "tools_built": {
       "count": 16,
       "automated": false,
-      "roster_rule": "16 = 13 public tools (15 named tools.json manifest entries minus retired LoanLens and iMandate) + iExpense + Ascent + OnePager, with OnePager called out as standalone by editorial decision even though it ships inside FSI Showcase. This is Chris's hand-curated editorial roster. It is NOT derivable from ilink-tools tools.json (it excludes manifest internal tools ATO Hub and Microsoft FSI Accounts, and adds OnePager which the manifest counts inside the 13). Never recompute this number. Never automate it. Framing is built, never live: two of the 16 are retired and SignalScope is under construction. See TheGrove wiki/decisions/ad192.md."
+      "roster_rule": "16 = 13 public tools (15 named tools.json manifest entries minus retired LoanLens and iMandate) + iExpense + Ascent + OnePager, with OnePager called out as standalone by editorial decision even though it ships inside FSI Showcase. This is Chris's hand-curated editorial roster. It is NOT derivable from ilink-tools tools.json (it excludes manifest internal tools ATO Hub and Microsoft FSI Accounts, and adds OnePager which the manifest counts inside the 13). Never recompute this number. Never automate it. Framing is built, never live: two of the 16 are retired. See TheGrove wiki/decisions/ad192.md."
     }
   }
 }
