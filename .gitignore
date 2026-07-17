@@ -5,3 +5,4 @@ Thumbs.db
 node_modules/
 templates/*/output.mp4
 renders/
+__pycache__/
