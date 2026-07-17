@@ -216,11 +216,12 @@ def js_off_gates(p):
         and content.index(disclosure) < content.index('class="exemplars"'),
     )
 
-    # v3 additions: 6 "AI for X" career pills; Links accordion in both
-    # contact_block call sites (mobile identity + desktop rail), 4 links each.
+    # v3 additions: 6 "AI for X" career pills; the 4 secondary links are now
+    # plain contact rows (no accordion) in both contact_block call sites
+    # (mobile identity + desktop rail), 7 rows each.
     check("js-off: 6 .b-tag career pills", page.locator(".b-tag").count() == 6)
-    check("js-off: 2 .links-group accordions (mobile + rail)", page.locator(".links-group").count() == 2)
-    check("js-off: 8 links-body anchors (4 per accordion)", page.locator(".links-body a").count() == 8)
+    check("js-off: 0 .links-group accordions remain", page.locator(".links-group").count() == 0)
+    check("js-off: 14 .contact a anchors (7 rows x 2 call sites)", page.locator(".contact a").count() == 14)
 
     browser.close()
 

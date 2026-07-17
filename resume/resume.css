@@ -455,35 +455,14 @@ details.career-item[open] .marker{ transform:rotate(45deg); background:var(--acc
   font-size:.66rem; letter-spacing:.14em; text-transform:uppercase;
   color:var(--text-muted); margin-bottom:.55rem; display:block;
 }
-.contact a, .contact span.c-row, .links-body a{
+.contact a, .contact span.c-row{
   display:flex; align-items:center; gap:.55rem;
   padding:.32rem 0; min-height:44px; font-size:.78rem; color:var(--text);
   text-decoration:none;
 }
-.contact a:hover, .links-body a:hover{ color:var(--accent); }
-.contact svg, .links-body svg{ width:14px; height:14px; flex:none; stroke:var(--accent); }
-.contact .c-val, .links-body .c-val{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-
-/* ---------- Links (secondary contact/links, collapsed disclosure) ----------
-   Kept OUT of the always-visible .contact block deliberately: 4 more 44px
-   rows there would blow the rail fold budget (sparkline-above-fold at h=768
-   is binding). Reuses the details/summary accordion pattern already used for
-   .certs/.venture/.career-item so it costs one ~44px summary row when
-   collapsed, not four. */
-.links-group{ margin-top:.85rem; }
-.links-group > summary{
-  display:grid; grid-template-columns:28px 1fr auto; align-items:center; gap:.6rem;
-  padding:.5rem .15rem; cursor:pointer; min-height:44px;
-  -webkit-tap-highlight-color:transparent;
-}
-.links-group > summary:hover .marker{ border-color:var(--accent); }
-.links-group > summary:hover .links-title{ color:var(--accent); }
-.links-title{
-  font-family:var(--font-mono); font-size:.66rem; letter-spacing:.14em;
-  text-transform:uppercase; color:var(--text-muted);
-}
-.links-count{ font-family:var(--font-mono); font-size:.72rem; color:var(--accent); font-weight:700; white-space:nowrap; }
-.links-body{ padding:0 .15rem .3rem 34px; }
+.contact a:hover{ color:var(--accent); }
+.contact svg{ width:14px; height:14px; flex:none; stroke:var(--accent); }
+.contact .c-val{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
 /* ---------- Credentials (education + certs disclosure) ---------- */
 .edu-row{
