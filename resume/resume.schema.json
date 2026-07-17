@@ -258,7 +258,9 @@
                       "required": ["text"],
                       "properties": {
                         "text": { "type": "string" },
-                        "tag": { "type": "string", "description": "Optional metadata pill rendered at the end of the bullet (e.g. 'AI for Ops'). Muted chip on the page, '(tag)' parenthetical in the PDF." }
+                        "tag": { "type": "string", "description": "Optional metadata pill rendered at the end of the bullet (e.g. 'AI for Ops'). Muted chip on the page, '(tag)' parenthetical in the PDF." },
+                        "link_text": { "type": "string", "description": "Optional substring of text to render as a hyperlink on the web page (PDF stays plain text for ATS parsing). Must appear verbatim in text." },
+                        "link_href": { "type": "string", "format": "uri", "description": "URL for link_text. Required if link_text is set." }
                       }
                     }
                   ]

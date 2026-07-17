@@ -294,7 +294,11 @@
             <ul class="career-bullets">
 {%- for b in row.bullets %}
 {%- if b is mapping %}
+{%- if b.link_text and b.link_href %}
+              <li>{{ b.text | replace(b.link_text, '<a href="' + b.link_href + '" target="_blank" rel="noopener">' + b.link_text + '</a>') | safe }}{% if b.tag %} <span class="b-tag">{{ b.tag }}</span>{% endif %}</li>
+{%- else %}
               <li>{{ b.text }}{% if b.tag %} <span class="b-tag">{{ b.tag }}</span>{% endif %}</li>
+{%- endif %}
 {%- else %}
               <li>{{ b }}</li>
 {%- endif %}

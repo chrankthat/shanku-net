@@ -248,14 +248,16 @@
         "bullets": [
           "Building a $4M annual revenue pipeline through consultative pre-sales, Microsoft co-sell motions, and direct enterprise engagement across banking, insurance, and capital markets.",
           {
-            "text": "Designed and deployed AI-powered operational tools for the practice: automated meeting prep, a voice-preserving email drafting agent with a review gate, and a follow-up engine that risk-scores every commitment.",
+            "text": "Designed and deployed AI-powered operational tools for the practice: The Ledger for relationship health across 100+ contacts, automated meeting prep, a voice-preserving email drafting agent with a review gate, and a follow-up engine that risk-scores every commitment.",
             "tag": "AI for Ops"
           },
           {
-            "text": "Built Intel Brief (FSI competitive intelligence) and The Ledger (relationship health across 100+ contacts).",
-            "tag": "AI for Sales"
+            "text": "Built and rolled out iLink.Tools, a collection of Human + Agent-built customer-facing tools to accelerate our sales cycle. 100K+ page views since launch.",
+            "tag": "AI for Sales",
+            "link_text": "iLink.Tools",
+            "link_href": "https://ilink.tools"
           },
-          "Leading iLink's presence at Microsoft FabCon: workshop proposals, partner engagement, and executive scheduling.",
+          "Brokered direct introductions between iLink's C-suite and Microsoft's GM leadership across Insurance, Banking, and Capital Markets at Microsoft FabCon, turning that access into 15 qualified opportunities.",
           {
             "text": "Personally covered deep technical pre-sales conversations for customers and Microsoft sellers when no Business Unit specialist was available, building AI-powered research and demo tools to prepare and differentiate at the pace a dedicated technical pre-sales team would.",
             "tag": "AI for Engineering"
