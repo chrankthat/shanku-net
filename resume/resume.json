@@ -365,12 +365,14 @@
       "items": [
         "Microsoft Azure",
         "Microsoft 365",
-        "Google Workspace"
+        "Google Workspace",
+        "GCP"
       ]
     },
     {
       "category": "AI / ML",
       "items": [
+        "Microsoft Foundry",
         "Azure OpenAI",
         "Anthropic Claude",
         "Google Gemini",
@@ -383,19 +385,28 @@
         "AI-Native SDLC",
         "Loop Engineering",
         "Harness Engineering",
-        "Context Engineering"
+        "Context Engineering",
+        "Model Routing",
+        "OpenClaw",
+        "Hermes Agent"
       ]
     },
     {
       "category": "Data & Analytics",
       "items": [
         "Microsoft Fabric",
-        "Power BI (9 yrs)",
+        "Power BI (11 yrs)",
+        "BI Migrations",
+        "Database Migrations",
         "SQL Server",
         "CouchDB",
         "PostgreSQL",
         "Databricks",
-        "DAX"
+        "DAX",
+        "PowerQuery",
+        "Microsoft Purview",
+        "Azure Arc",
+        "Cosmos DB"
       ]
     },
     {
