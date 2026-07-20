@@ -777,6 +777,28 @@
         ]
       },
       {
+        "date": "2026-07-20",
+        "venture": "iLink Tools",
+        "text": "Deployed authentication system across all surfaces and improved data backup coverage for cloud infrastructure.",
+        "source_commits": [
+          {
+            "repo": "/Users/trunk/ilink-tools",
+            "sha": "9f7a13e5003b77448d51e9e20d1ec832eb18001b",
+            "subject": "close: i2.4 ProofWorks deploy + auth - release note, all surfaces re-verified live"
+          },
+          {
+            "repo": "/Users/trunk/ilink-tools",
+            "sha": "a375a263b446a31f48a8dc82507fd56e3d6983f9",
+            "subject": "feat(infra): personal access-continuity backup scripts"
+          },
+          {
+            "repo": "/Users/trunk/ilink-tools",
+            "sha": "8824ff65d5e533f386109f3ceb74201fe1efdaa2",
+            "subject": "fix(infra): cosmos-export.py covers all 4 known Cosmos containers, not just documents"
+          }
+        ]
+      },
+      {
         "date": "2026-07-16",
         "venture": "Human in the Loop",
         "text": "Shipped dynamic shorts generation on Remotion and automated multi-episode video publishing pipeline.",
