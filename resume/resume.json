@@ -665,6 +665,118 @@
         ]
       },
       {
+        "date": "2026-07-20",
+        "venture": "twelfth.help",
+        "text": "Built sponsor-assignment system with step progression logic, backend routes, API types, and full test coverage for mentorship platform.",
+        "source_commits": [
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "ac49c301e5c3a0c044c8f0d5209612f384d8fa39",
+            "subject": "docs(brainstorming): step advancement fix design spec"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "0e2b0df59dcf40ea6b4d3b3bf34c3368276960e0",
+            "subject": "feat(step-work): advance_to_next_step shared module + unit tests"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "8fa437f6f24e696cf63af87a95e3b14d3895a7f3",
+            "subject": "feat(step-work): open-cadence completion advances to the next step"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "2e797c1038e7b3aa4651487da07af8e2367808e3",
+            "subject": "feat(sponsor): approve_step advances the sponsee to the next step"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "0e45cec48d883d716c445ba8f5693a3caa1f029a",
+            "subject": "feat(step-work): backfill script + guarded upsert for pre-fix seed rows"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "c179e90a0394460597ec648e40c7f59817e5bd05",
+            "subject": "feat(sponsor): surface discussed_at per section in sponsee_progress"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "77c19c6ef9adc4d30e07017bb3a47e1abf1714c0",
+            "subject": "feat(sponsor-ui): discussed badge, section-cadence-only button, cadence relabel"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "b1dda96daee476ef0e6fe963a6c9dcc8cdbc54e9",
+            "subject": "fix(step-intro): fully-locked step renders locked state, not a dead Begin"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "1653088b94ae1cc7a5d2e271d34f26f835cb9a64",
+            "subject": "docs(brainstorming): sponsor assignments design spec"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "573b301db1f7bbbe053d5e9c371388115639dd54",
+            "subject": "docs(brainstorming): record schema-mutation sign-off resolution"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "f0242e69c2c2f9c898907156d35996d46c860c4b",
+            "subject": "docs(design): sponsor-assignments chosen direction (A sponsee + C sponsor)"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "3560d9402d3a2bd8350fd3494890e1d6f78a7ce5",
+            "subject": "build(v0.15.0/sponsor-assignments): workspace + reviewed plan + BINDING-C10 spec propagation"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "4e1c2450c2b59f70f81eec5702b94826b8fe12b3",
+            "subject": "build(v0.15.0/sponsor-assignments): WI-1 migration 010 - twelfth.assignments table + indexes"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "db3ada5b40512a4021b842c4c06009b43fa5ac19",
+            "subject": "build(v0.15.0/sponsor-assignments): WI-2+3 assignments router (6 routes) + registration"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "3dcbcb06c41bd334d2424923ed9d935f29bbb1e0",
+            "subject": "build(v0.15.0/sponsor-assignments): WI-8 backend tests - 24 cases incl BLOCK-1 paused-sponsor + C6/C7/C8 assertions"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "47cb530e325752a27070c7375391d58a150e82ec",
+            "subject": "build(v0.15.0/sponsor-assignments): WI-4 api.ts Assignment types + api.assignments namespace"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "374f68de9ffb562f950ca254899a2ffeac4570cf",
+            "subject": "build(v0.15.0/sponsor-assignments): WI-5+6 sponsee /assignments page (.tma writing space, C5 microcopy) + wiring"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "b906a5daf4ff29f5f1784c6572c8ce11d4574b42",
+            "subject": "build(v0.15.0/sponsor-assignments): WI-7 sponsor drawer tab bar + assignments card-index tab"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "c85ebe605654b4d7d197c36ffa21c7cb68db2e51",
+            "subject": "build(v0.15.0/sponsor-assignments): WI-9 regression suite - 20/20 predicates PASS live"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "20bf8607b02fd7287204995f760575181ee6fe6e",
+            "subject": "build(v0.15.0/sponsor-assignments): WI-10 browser verification PASS + hotfix-1 refetch-on-back"
+          },
+          {
+            "repo": "/Users/trunk/twelfth.help",
+            "sha": "13e603ea4dd75ae9928bfc06cddb4c6f45588c94",
+            "subject": "close(v0.15.0/sponsor-assignments): architect APPROVE clean, close-report, STATUS.md reconciled + bumped"
+          }
+        ]
+      },
+      {
         "date": "2026-07-16",
         "venture": "Human in the Loop",
         "text": "Shipped dynamic shorts generation on Remotion and automated multi-episode video publishing pipeline.",
