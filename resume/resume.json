@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_updated": "2026-07-17",
+    "last_updated": "2026-07-20",
     "canonical_url": "https://shanku.net/resume/",
     "pdf_filename": "chris-shanku-resume.pdf"
   },
@@ -532,6 +532,138 @@
   "ship_log": {
     "enabled": true,
     "entries": [
+      {
+        "date": "2026-07-20",
+        "venture": "The Grove",
+        "text": "Migrated 15+ background services from cron to LaunchDaemon with zero-downtime reliability hardening and post-boot verification.",
+        "source_commits": [
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "26116a02619948301d82c71d509390dcb525be68",
+            "subject": "publisher: normalize backfill provenance + historical entry dates at merge"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "136f7e455a1ebf17080a00374c15127ab492db23",
+            "subject": "publisher: house dash normalization at merge (drain incident #2)"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "944a892bbcceb0dbec6c4837142d28ecccb5d656",
+            "subject": "sprint: dynamic-resume-v3 record update - live ops, drain incidents, v3b additions"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "9bc5b35fb056a882103e49ace43059e21a788154",
+            "subject": "sprint: dynamic-resume-v3 - contact-flatten + gold-pill + skills visuals"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "419825488f331343663991478dc335b2ad7fdc8d",
+            "subject": "close(v1.1.0): system/dynamic-resume-v3 - content depth + ship-log backfill + live-ops hardening"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "63a609231ec9fdd224426ce8392d69f59100bb45",
+            "subject": "quick: mark CF-2/CF-3 done in dynamic-resume-v2 carry-forward row"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "dbc91567394f63d232d14980bcd8b68bb946e0a8",
+            "subject": "review: launchd-reliability-hardening full-depth /review-plan + 12 folds applied"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "9baab57a7ab04f186dde43e452b6fb5e257110f5",
+            "subject": "sprint(WI-1): launchd-hardening pre-conversion baseline snapshot"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "9a9c1d46cb4387889de628eda8925b365ad81816",
+            "subject": "sprint(WI-2): ad-cron-rebuild D2 amendment - LaunchDaemon-by-default for is_critical jobs"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "8a2596689a723d2f194be66367a53c04733281c0",
+            "subject": "sprint(WI-3): ad194 decision record - launchd reliability hardening (sign-off pending)"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "bd1f2b73036cfc27ef4d83874495ffab6478e180",
+            "subject": "design: pinnacle vision showcase (Summit) spec - PulseBot multi-agent hero + pain-forward microsite at pinnacle.thegrove.pro"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "7ef1aa824719a811ffd5662fb5b1c24359cf3bc0",
+            "subject": "sprint(WI-3): ad194 Chris sign-off recorded - conversions unblocked"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "e9ebebeb030b11b90b78f841207533e72370ec9a",
+            "subject": "sprint(WI-4): reminders-bridge daemon conversion FAILED (bootstrap namespace) - rolled back clean, job revived"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "0ef8a5d2d2e1e299b5ba8205b4e048c4f50f8ad9",
+            "subject": "sprint(WI-5a): canary-transaction converted to LaunchDaemon - first successful conversion"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "732121c5e075a7e56a122904cbb80464f160f311",
+            "subject": "sprint(WI-5a): canary daemon natural StartInterval fire verified"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "d653e8e0c6217c190caa529714d0fd945c309083",
+            "subject": "sprint(WI-5b): pause at Chris-triggered reboot stop point - checklist recorded"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "b30b0d1e58583022c8ae3012ff0dc09bba9d0c16",
+            "subject": "sprint(WI-5b): AC-5 PASS - canary daemon fires post-boot, zero manual intervention"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "59fa5828c6715b6e095539a41e6998f94e404c83",
+            "subject": "sprint(WI-6): 6 grove-cron jobs converted to LaunchDaemons - FDA survives system domain"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "dfe626db41aafc38f1d5cea9f4b00b7c4eee8f8a",
+            "subject": "sprint(WI-7): watchdogs (gap-detector + hermes-garden-watchdog) converted to LaunchDaemons"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "7cb8bec014e352272c037a0ab3f990844a207a92",
+            "subject": "sprint(WI-12): independent HC.io->Telegram alert path live + AC-7 proven"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "d1ced8d709287b9e5f74c9a353052e1e0df27c88",
+            "subject": "sprint(WI-8): resume agents -> LaunchDaemons + CF-1 closed"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "ccc01a63990c4c0b7d0c26eb3c1226414795cd03",
+            "subject": "sprint(WI-9): HARD STOP recorded - awaiting Chris for grove-api+Postgres conversion"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "78ed5b5271b070d16c21d882879bbd9ac389fbc7",
+            "subject": "skill(diagram): port iLink diagram generator to TheGrove with brand palettes"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "2274185a4cd8cbf3dedafeada12358a1595a5010",
+            "subject": "design(pinnacle-summit): decision doc - B+C blend, PNFP homage, diagram-led density"
+          },
+          {
+            "repo": "/Users/trunk/TheGrove",
+            "sha": "85f99f0ce91d6d41e6d6e1abd60ef261644db78b",
+            "subject": "sprint: Chris holds WI-9/10 for later - clean pause, 15 services live"
+          }
+        ]
+      },
       {
         "date": "2026-07-16",
         "venture": "Human in the Loop",
