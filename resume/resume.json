@@ -667,7 +667,7 @@
       {
         "date": "2026-07-20",
         "venture": "twelfth.help",
-        "text": "Built sponsor-assignment system with step progression logic, backend routes, API types, and full test coverage for mentorship platform.",
+        "text": "Built sponsor-assignment system with backend routes, API types, and full test coverage for mentorship platform.",
         "source_commits": [
           {
             "repo": "/Users/trunk/twelfth.help",
